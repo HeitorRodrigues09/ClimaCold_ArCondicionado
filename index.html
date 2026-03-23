@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clima-Cold Ar-Condicionado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ice: #e8f4fd;
+      --blue-light: #7ec8e3;
+      --blue-mid: #0f8fc4;
+      --blue-deep: #064e80;
+      --navy: #041f38;
+      --white: #ffffff;
+      --gray: #8a9bb0;
+      --text: #1a2e3f;
+      --accent: #00c6ff;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.6rem 6%;
+      background: rgba(4,31,56,0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(126,200,227,0.12);
+      transition: padding .3s;
+      min-height: 70px;
+    }
+    nav.scrolled { padding: 0.4rem 6%; min-height: 60px; }
+
+    /* LOGO — tamanho controlado sem cobrir nada */
+    .nav-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .nav-logo img {
+      height: 65px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      transition: height .3s;
+    }
+    nav.scrolled .nav-logo img { height: 55px; }
+
+    .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 400;
+      letter-spacing: .3px;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--blue-mid) !important;
+      color: var(--white) !important;
+      padding: .5rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 500 !important;
+      transition: background .2s, transform .2s !important;
+    }
+    .nav-cta:hover {
+      background: var(--accent) !important;
+      transform: translateY(-1px);
+      color: var(--navy) !important;
+    }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; transition: .3s; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 7rem 6% 4rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,198,255,.1) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 15% 80%, rgba(15,143,196,.15) 0%, transparent 60%);
+    }
+    .particles { position: absolute; inset: 0; overflow: hidden; }
+    .particle {
+      position: absolute; border-radius: 50%;
+      background: rgba(0,198,255,.22);
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: .35; }
+      100% { transform: translateY(-120px) scale(1); opacity: 0; }
+    }
+    .snow { position: absolute; inset: 0; pointer-events: none; }
+    .flake {
+      position: absolute; top: -20px;
+      color: rgba(255,255,255,.3); user-select: none;
+      animation: snowfall linear infinite;
+    }
+    @keyframes snowfall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+
+    .hero-content { position: relative; z-index: 2; max-width: 640px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(0,198,255,.1); border: 1px solid rgba(0,198,255,.28);
+      color: var(--accent); font-size: .78rem; font-weight: 500;
+      padding: .42rem 1rem; border-radius: 50px;
+      margin-bottom: 1.6rem; letter-spacing: .6px; text-transform: uppercase;
+      animation: fadeUp .8s ease both;
+    }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+      font-weight: 800; line-height: 1.06; color: var(--white);
+      animation: fadeUp .8s .15s ease both;
+    }
+    h1 em {
+      font-style: normal; color: var(--accent); position: relative;
+    }
+    h1 em::after {
+      content: ''; position: absolute; left: 0; bottom: 3px; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      border-radius: 2px;
+    }
+    .hero-sub {
+      margin-top: 1.4rem; font-size: 1.02rem; font-weight: 300;
+      line-height: 1.8; color: rgba(255,255,255,.62); max-width: 480px;
+      animation: fadeUp .8s .3s ease both;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 2.2rem;
+      animation: fadeUp .8s .45s ease both;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-mid), var(--accent));
+      color: var(--white); padding: .88rem 2rem; border-radius: 50px;
+      font-size: .93rem; font-weight: 500; text-decoration: none;
+      border: none; cursor: pointer;
+      box-shadow: 0 8px 28px rgba(0,198,255,.3);
+      transition: transform .2s, box-shadow .2s; display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,198,255,.4); }
+    .btn-ghost {
+      background: transparent; color: rgba(255,255,255,.8);
+      padding: .88rem 2rem; border-radius: 50px;
+      font-size: .93rem; font-weight: 400; text-decoration: none;
+      border: 1px solid rgba(255,255,255,.24); cursor: pointer;
+      transition: border-color .2s, color .2s, transform .2s; display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+    .hero-stats {
+      display: flex; gap: 2.8rem; flex-wrap: wrap;
+      margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,.1);
+      animation: fadeUp .8s .6s ease both;
+    }
+    .stat-val { font-family: 'Syne', sans-serif; font-size: 2.1rem; font-weight: 800; color: var(--white); }
+    .stat-val span { color: var(--accent); }
+    .stat-label { font-size: .78rem; color: var(--gray); margin-top: .15rem; letter-spacing: .5px; text-transform: uppercase; }
+
+    .hero-visual {
+      position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+      width: 36%; display: flex; justify-content: center; align-items: center;
+      z-index: 1; animation: fadeIn 1.2s .5s ease both;
+    }
+    .hero-ac-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(126,200,227,.18);
+      border-radius: 24px; padding: 2.6rem;
+      backdrop-filter: blur(10px); text-align: center;
+      position: relative; overflow: hidden; width: 100%;
+    }
+    .hero-ac-card::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(0,198,255,.12), transparent 70%);
+    }
+    .ac-icon-big {
+      font-size: 5rem; display: block; margin-bottom: .8rem;
+      animation: glow 3s ease-in-out infinite;
+    }
+    @keyframes glow {
+      0%,100% { filter: drop-shadow(0 0 18px rgba(0,198,255,.4)); }
+      50%      { filter: drop-shadow(0 0 50px rgba(0,198,255,.85)); }
+    }
+    .ac-card-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: .4rem; }
+    .ac-card-temp { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: var(--accent); }
+    .ac-card-temp sub { font-size: 1.1rem; }
+    .ac-card-status {
+      margin-top: .8rem; font-size: .8rem; color: rgba(255,255,255,.45);
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+    }
+    .status-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: blink 1.5s ease infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 6%; }
+    .section-label {
+      display: inline-block; font-size: .73rem; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--blue-mid); margin-bottom: .9rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 800; line-height: 1.18; color: var(--navy);
+    }
+    .section-title span { color: var(--blue-mid); }
+    .section-desc {
+      max-width: 540px; margin-top: .9rem;
+      font-size: .97rem; color: #587080; line-height: 1.8; font-weight: 300;
+    }
+
+    /* ── ABOUT ── */
+    #sobre { background: var(--ice); position: relative; overflow: hidden; }
+    #sobre::before {
+      content: ''; position: absolute; right: -10%; top: -15%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(15,143,196,.07), transparent 60%);
+      border-radius: 50%;
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center; position: relative; z-index: 1;
+    }
+    .about-img-main {
+      width: 100%;
+      background: linear-gradient(135deg, var(--navy), var(--blue-deep));
+      border-radius: 20px; aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7rem;
+      box-shadow: 0 30px 80px rgba(6,78,128,.22);
+      position: relative; overflow: hidden;
+    }
+    .about-img-main::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,198,255,.08), transparent);
+    }
+    .about-img-wrap { position: relative; }
+    .about-badge-float {
+      position: absolute; bottom: -18px; right: -18px;
+      background: var(--white); border-radius: 16px;
+      padding: 1.1rem 1.4rem; box-shadow: 0 10px 40px rgba(0,0,0,.1); text-align: center;
+    }
+    .about-badge-float .num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--blue-mid); }
+    .about-badge-float .lbl { font-size: .75rem; color: var(--gray); margin-top: .15rem; }
+    .about-list { list-style: none; margin-top: 1.8rem; display: flex; flex-direction: column; gap: .85rem; }
+    .about-list li {
+      display: flex; align-items: flex-start; gap: .85rem;
+      font-size: .93rem; color: #4a6070; line-height: 1.65;
+    }
+    .about-list li::before { content: '✦'; color: var(--blue-mid); font-size: .75rem; margin-top: .28rem; flex-shrink: 0; }
+
+    /* ── SERVICES ── */
+    #servicos { background: var(--white); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 3.5rem; }
+    .service-card {
+      background: var(--white); border: 1px solid #d8eaf4;
+      border-radius: 20px; padding: 2.1rem;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--blue-mid), var(--accent));
+      transform: scaleX(0); transform-origin: left; transition: transform .3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 55px rgba(15,143,196,.1); border-color: var(--blue-light); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, rgba(15,143,196,.1), rgba(0,198,255,.1));
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.45rem; margin-bottom: 1.3rem;
+    }
+    .service-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: .65rem; }
+    .service-card p { font-size: .88rem; color: #6a8090; line-height: 1.72; }
+
+    /* ── NUMBERS ── */
+    #numeros { background: var(--navy); padding: 5rem 6%; position: relative; overflow: hidden; }
+    #numeros::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(0,198,255,.06), transparent 70%);
+    }
+    .numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; position: relative; z-index: 1; text-align: center; }
+    .number-item { padding: 1.8rem; }
+    .number-icon { font-size: 1.9rem; margin-bottom: .7rem; }
+    .number-val { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: var(--white); line-height: 1; }
+    .number-val span { color: var(--accent); }
+    .number-label { font-size: .8rem; color: var(--gray); margin-top: .5rem; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── TESTIMONIALS ── */
+    #depoimentos { background: var(--ice); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 3.5rem; }
+    .testi-card {
+      background: var(--white); border-radius: 20px; padding: 1.9rem;
+      box-shadow: 0 4px 28px rgba(0,0,0,.055);
+      display: flex; flex-direction: column; gap: 1.1rem; transition: transform .3s;
+    }
+    .testi-card:hover { transform: translateY(-4px); }
+    .testi-stars { color: #f59e0b; font-size: .95rem; letter-spacing: 2px; }
+    .testi-text { font-size: .9rem; color: #4a6070; line-height: 1.75; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: .85rem; margin-top: auto; }
+    .testi-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-mid), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 700; color: white;
+      font-family: 'Syne', sans-serif; flex-shrink: 0;
+    }
+    .testi-name { font-weight: 600; font-size: .88rem; color: var(--navy); }
+    .testi-city { font-size: .76rem; color: var(--gray); }
+
+    /* ── TEAM ── */
+    #equipe { background: var(--white); }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-top: 3.5rem; }
+    .team-card {
+      text-align: center; padding: 2rem 1rem;
+      border-radius: 20px; border: 1px solid #d8eaf4;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .team-card:hover { transform: translateY(-5px); box-shadow: 0 15px 50px rgba(15,143,196,.1); }
+    .team-avatar {
+      width: 78px; height: 78px; border-radius: 50%;
+      margin: 0 auto 1rem;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; border: 3px solid rgba(0,198,255,.18);
+    }
+    .team-name { font-family: 'Syne', sans-serif; font-size: .98rem; font-weight: 700; color: var(--navy); margin-bottom: .3rem; }
+    .team-role { font-size: .8rem; color: var(--gray); }
+
+    /* ── VIDEO CAROUSEL ── */
+    #videos { background: var(--navy); padding: 5rem 6%; position: relative; overflow: hidden; }
+    #videos::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,198,255,.07), transparent 70%);
+      pointer-events: none;
+    }
+    .videos-header { text-align: center; margin-bottom: 3rem; }
+    .videos-header .section-title { color: var(--white); }
+    .videos-header .section-label { color: var(--accent); }
+    .videos-header .section-desc { color: rgba(255,255,255,.45); margin: .8rem auto 0; }
+
+    .carousel-wrapper { position: relative; max-width: 900px; margin: 0 auto; padding: 0 64px; }
+    .carousel-track { position: relative; width: 100%; }
+    .carousel-slide { display: none; }
+    .carousel-slide.active { display: block; animation: fadeIn .45s ease; }
+    .carousel-slide video {
+      width: 100%; border-radius: 18px; display: block;
+      box-shadow: 0 20px 60px rgba(0,198,255,.2);
+      border: 1px solid rgba(126,200,227,.2);
+      background: #000; max-height: 500px;
+    }
+    .slide-label { text-align: center; margin-top: 1rem; font-size: .84rem; color: rgba(255,255,255,.4); font-style: italic; }
+
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 46px; height: 46px;
+      background: rgba(0,198,255,.12); border: 1px solid rgba(0,198,255,.3);
+      border-radius: 50%; color: var(--white); font-size: 1.2rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .2s; z-index: 2;
+    }
+    .carousel-btn:hover { background: var(--blue-mid); transform: translateY(-50%) scale(1.1); }
+    .carousel-btn.prev { left: 0; }
+    .carousel-btn.next { right: 0; }
+
+    .carousel-dots { display: flex; justify-content: center; gap: .65rem; margin-top: 1.8rem; }
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,.22); cursor: pointer;
+      transition: background .3s, transform .3s; border: none; padding: 0;
+    }
+    .dot.active { background: var(--accent); transform: scale(1.35); }
+
+    /* ── CONTACT ── */
+    #contato { background: var(--navy); position: relative; overflow: hidden; }
+    #contato::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(0,198,255,.07), transparent 70%);
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.3fr;
+      gap: 5rem; align-items: start; position: relative; z-index: 1;
+    }
+    .contact-info .section-title { color: var(--white); }
+    .contact-info .section-label { color: var(--accent); }
+    .contact-info .section-desc { color: rgba(255,255,255,.48); }
+    .contact-details { margin-top: 2.2rem; display: flex; flex-direction: column; gap: 1.1rem; }
+    .contact-item { display: flex; align-items: center; gap: .9rem; }
+    .contact-item-icon {
+      width: 42px; height: 42px;
+      background: rgba(0,198,255,.09); border: 1px solid rgba(0,198,255,.18);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-item-text { font-size: .9rem; color: rgba(255,255,255,.6); line-height: 1.5; }
+    .contact-item-text strong { color: var(--white); display: block; font-size: .82rem; margin-bottom: .05rem; }
+    .contact-item-text a { color: rgba(255,255,255,.6); text-decoration: none; transition: color .2s; }
+    .contact-item-text a:hover { color: var(--accent); }
+
+    .contact-form {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(126,200,227,.14);
+      border-radius: 24px; padding: 2.4rem; backdrop-filter: blur(8px);
+    }
+    .form-group { margin-bottom: 1.15rem; }
+    .form-group label {
+      display: block; font-size: .78rem; color: rgba(255,255,255,.45);
+      margin-bottom: .45rem; text-transform: uppercase; letter-spacing: .5px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%; background: rgba(255,255,255,.06);
+      border: 1px solid rgba(126,200,227,.18); border-radius: 12px;
+      padding: .82rem 1.1rem; color: var(--white);
+      font-family: 'DM Sans', sans-serif; font-size: .93rem;
+      outline: none; transition: border-color .2s, background .2s; resize: vertical;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,.22); }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--accent); background: rgba(0,198,255,.05); }
+    .form-group select option { background: var(--navy); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #020f1c; padding: 2.8rem 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.2rem;
+      border-top: 1px solid rgba(126,200,227,.1);
+    }
+    .footer-logo img {
+      height: 44px; width: auto; object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+    .footer-copy { font-size: .8rem; color: var(--gray); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: .8rem; color: var(--gray); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    .reveal { opacity: 0; transform: translateY(38px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── SCROLL TOP ── */
+    .scroll-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 44px; height: 44px; background: var(--blue-mid);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.1rem; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(15,143,196,.4);
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s, transform .3s;
+      text-decoration: none; z-index: 99;
+    }
+    .scroll-top.show { opacity: 1; pointer-events: all; }
+    .scroll-top:hover { transform: translateY(-3px); }
+
+    /* ── WHATSAPP ── */
+    .whatsapp-btn {
+      position: fixed; bottom: 2rem; left: 2rem; z-index: 99;
+      background: #25d366; color: white;
+      display: flex; align-items: center; gap: .6rem;
+      padding: .75rem 1.3rem; border-radius: 50px;
+      font-size: .88rem; font-weight: 500; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(37,211,102,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .whatsapp-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(37,211,102,.5); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none; flex-direction: column; gap: 1.5rem;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(4,31,56,.97); padding: 2rem 6%;
+      }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .hero-visual { display: none; }
+      .hero-content { max-width: 100%; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .services-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: repeat(2,1fr); }
+      .numbers-grid { grid-template-columns: repeat(2,1fr); }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+      .whatsapp-btn span { display: none; }
+      .whatsapp-btn { padding: .75rem; border-radius: 50%; }
+      .carousel-wrapper { padding: 0 50px; }
+    }
+    @media (max-width: 600px) {
+      .hero-stats { gap: 1.5rem; }
+      .team-grid { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <img src="ClimaColdArCondicionado.png" alt="Clima-Cold Ar-Condicionado" />
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#equipe">Equipe</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="#contato" class="nav-cta">Solicitar Orçamento</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="particles" id="particles"></div>
+  <div class="snow" id="snow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">❄ Desde 2012 no Mercado</div>
+    <h1>Conforto que<br/><em>refresca</em> sua vida</h1>
+    <p class="hero-sub">A Clima-Cold é referência em ar-condicionado na região. Instalação, manutenção e suporte com qualidade profissional e atendimento que você pode confiar.</p>
+    <div class="hero-actions">
+      <a href="#contato" class="btn-primary">Solicitar Orçamento</a>
+      <a href="#servicos" class="btn-ghost">Nossos Serviços</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-val">12<span>+</span></div><div class="stat-label">Anos de experiência</div></div>
+      <div><div class="stat-val">8k<span>+</span></div><div class="stat-label">Clientes atendidos</div></div>
+      <div><div class="stat-val">98<span>%</span></div><div class="stat-label">Satisfação garantida</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-ac-card">
+      <span class="ac-icon-big">❄️</span>
+      <div class="ac-card-title">Ambiente Climatizado</div>
+      <div class="ac-card-temp">24<sub>°C</sub></div>
+      <div class="ac-card-status"><span class="status-dot"></span>Sistema ativo — conforto total</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="about-grid">
+    <div class="about-img-wrap reveal">
+      <div class="about-img-main">🏢</div>
+      <div class="about-badge-float"><div class="num">2012</div><div class="lbl">Fundação</div></div>
+    </div>
+    <div class="reveal">
+      <span class="section-label">Quem somos</span>
+      <h2 class="section-title">A empresa que <span>lidera</span> o conforto na região</h2>
+      <p class="section-desc">Fundada em 2012, a Clima-Cold nasceu da paixão por oferecer ambientes confortáveis e soluções eficientes em climatização. Ao longo de mais de uma década, nos tornamos a escolha número 1 da região.</p>
+      <ul class="about-list">
+        <li>Equipe técnica certificada com anos de experiência no mercado</li>
+        <li>Trabalhamos com as principais marcas: Daikin, Midea, LG, Samsung e mais</li>
+        <li>Atendimento rápido e comprometido com a satisfação do cliente</li>
+        <li>Garantia em todas as instalações e serviços prestados</li>
+        <li>Mais de 2.000 clientes atendidos desde nossa fundação</li>
+      </ul>
+      <a href="#contato" class="btn-primary" style="margin-top:2rem">Fale com a gente</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div style="text-align:center" class="reveal">
+    <span class="section-label">O que fazemos</span>
+    <h2 class="section-title">Nossos <span>serviços</span></h2>
+    <p class="section-desc" style="margin:1rem auto 0">Soluções completas em climatização para residências, comércios e indústrias.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal"><div class="service-icon">❄️</div><h3>Instalação de Ar-Condicionado</h3><p>Instalação profissional de aparelhos split, multi-split e central com segurança e qualidade garantida.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🔧</div><h3>Manutenção Preventiva</h3><p>Mantenha seu equipamento funcionando com máxima eficiência. Limpeza, revisão e troca de filtros.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🛠️</div><h3>Manutenção Corretiva</h3><p>Diagnóstico e reparo rápido de falhas e defeitos. Atendimento emergencial disponível.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🏗️</div><h3>Projetos Comerciais</h3><p>Projetos de climatização para escritórios, lojas e restaurantes com dimensionamento técnico especializado.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🌡️</div><h3>Higienização</h3><p>Limpeza completa e higienização profunda para eliminar fungos, bactérias e garantir ar puro.</p></div>
+    <div class="service-card reveal"><div class="service-icon">📋</div><h3>Contrato de Manutenção</h3><p>Planos de manutenção programada com visitas periódicas e condições especiais para sua empresa.</p></div>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<section id="numeros">
+  <div class="numbers-grid">
+    <div class="number-item reveal"><div class="number-icon">🏆</div><div class="number-val" data-target="12" data-suffix="+">12<span>+</span></div><div class="number-label">Anos no Mercado</div></div>
+    <div class="number-item reveal"><div class="number-icon">😊</div><div class="number-val" data-target="7000" data-suffix="+">7000<span>+</span></div><div class="number-label">Clientes Satisfeitos</div></div>
+    <div class="number-item reveal"><div class="number-icon">⚡</div><div class="number-val" data-target="20000" data-suffix="+">20000<span>+</span></div><div class="number-label">Serviços Realizados</div></div>
+    <div class="number-item reveal"><div class="number-icon">⭐</div><div class="number-val" data-target="98" data-suffix="%">98<span>%</span></div><div class="number-label">Índice de Satisfação</div></div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div style="text-align:center" class="reveal">
+    <span class="section-label">Depoimentos</span>
+    <h2 class="section-title">O que nossos <span>clientes</span> dizem</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-text">"Serviço impecável! A equipe da Clima-Cold instalou meu ar-condicionado com agilidade e limpeza total. Super recomendo para quem busca qualidade de verdade."</p><div class="testi-author"><div class="testi-avatar">M</div><div><div class="testi-name">Maria Fernanda S.</div><div class="testi-city">Fernandópolis — SP</div></div></div></div>
+    <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-text">"Precisei de manutenção urgente no meu escritório e eles atenderam no mesmo dia. Profissionais excelentes, preço justo. Sem dúvida a melhor empresa da região!"</p><div class="testi-author"><div class="testi-avatar">R</div><div><div class="testi-name">Roberto Almeida</div><div class="testi-city">Votuporanga — SP</div></div></div></div>
+    <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-text">"Contratei o plano de manutenção para minha loja e foi a melhor decisão. Meus aparelhos nunca funcionaram tão bem. Equipe pontual e super atenciosa."</p><div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Ana Paula C.</div><div class="testi-city">Fernandópolis — SP</div></div></div></div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe">
+  <div style="text-align:center" class="reveal">
+    <span class="section-label">Nossa Equipe</span>
+    <h2 class="section-title">Os <span>profissionais</span> por trás do conforto</h2>
+    <p class="section-desc" style="margin:1rem auto 0">Time técnico certificado, dedicado e pronto para te atender com excelência.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal"><div class="team-avatar">👨‍💼</div><div class="team-name">Jeferson Pedro</div><div class="team-role">Fundador & Diretor Técnico</div></div>
+    <div class="team-card reveal"><div class="team-avatar">👩‍💼</div><div class="team-name">Adriana Miguelão</div><div class="team-role">Diretora Financeira</div></div>
+    <div class="team-card reveal"><div class="team-avatar">👨‍🔧</div><div class="team-name">Maria Eduarda</div><div class="team-role">Atendimento Comercial</div></div>
+    <div class="team-card reveal"><div class="team-avatar">🔧</div><div class="team-name">Taina Tavares</div><div class="team-role">Atendimento Comercial</div></div>
+    <div class="team-card reveal"><div class="team-avatar">👷</div><div class="team-name">Heitor Rodrigues</div><div class="team-role">Analista de Suporte em TI</div></div>
+    <div class="team-card reveal"><div class="team-avatar">👩‍🔧</div><div class="team-name">Andreia</div><div class="team-role">Gerente da Oficina</div></div>
+    <div class="team-card reveal"><div class="team-avatar">👨‍🔧</div><div class="team-name">Flavio</div><div class="team-role">Técnico</div></div>
+    <div class="team-card reveal"><div class="team-avatar">👨‍🔧</div><div class="team-name">Felipe Candeia</div><div class="team-role">Técnico</div></div>
+    <div class="team-card reveal"><div class="team-avatar">🛠️</div><div class="team-name">Everton Camarotto</div><div class="team-role">Técnico</div></div>
+    <div class="team-card reveal"><div class="team-avatar">⚙️</div><div class="team-name">Uilian</div><div class="team-role">Ajudante Técnico</div></div>
+    <div class="team-card reveal"><div class="team-avatar">👨‍🔧</div><div class="team-name">Allan</div><div class="team-role">Ajudante Técnico</div></div>
+    <div class="team-card reveal"><div class="team-avatar">🔩</div><div class="team-name">Rogerio</div><div class="team-role">Ajudante Técnico</div></div>
+    <div class="team-card reveal"><div class="team-avatar">👷</div><div class="team-name">Tainã</div><div class="team-role">Ajudante Técnico</div></div>
+  </div>
+</section>
+
+<!-- VÍDEOS -->
+<section id="videos">
+  <div class="videos-header reveal">
+    <span class="section-label">Clima-Cold em Ação</span>
+    <h2 class="section-title">Veja nossa <span style="color:var(--accent)">equipe trabalhando</span></h2>
+    <p class="section-desc">Transparência e qualidade em cada serviço. Confira nossos vídeos e conheça de perto o nosso trabalho.</p>
+  </div>
+  <div class="carousel-wrapper reveal">
+    <button class="carousel-btn prev" onclick="changeSlide(-1)">&#8592;</button>
+    <button class="carousel-btn next" onclick="changeSlide(1)">&#8594;</button>
+    <div class="carousel-track">
+      <div class="carousel-slide active" data-index="0">
+        <video controls preload="metadata">
+          <source src="ClimaColdVideo.mp4" type="video/mp4">
+        </video>
+        <div class="slide-label">Vídeo institucional — Clima-Cold Ar-Condicionado</div>
+      </div>
+      <!-- Para adicionar mais vídeos, copie o bloco abaixo e descomente:
+      <div class="carousel-slide" data-index="1">
+        <video controls preload="metadata">
+          <source src="ClimaColdVideo2.mp4" type="video/mp4">
+        </video>
+        <div class="slide-label">Título do vídeo 2</div>
+      </div>
+      -->
+    </div>
+    <div class="carousel-dots" id="carouselDots">
+      <button class="dot active" onclick="goToSlide(0)"></button>
+      <!-- Adicione uma bolinha por vídeo novo:
+      <button class="dot" onclick="goToSlide(1)"></button>
+      -->
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <span class="section-label">Fale Conosco</span>
+      <h2 class="section-title">Solicite seu <span style="color:var(--accent)">orçamento</span></h2>
+      <p class="section-desc">Entre em contato e receba um orçamento gratuito. Atendemos residências, comércios e indústrias em toda a região.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div class="contact-item-text">
+            <strong>Endereço</strong>
+            Av. da Saudade, 282 — Higienópolis, Fernandópolis/SP
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-text">
+            <strong>Telefone / WhatsApp</strong>
+            (17) 99628-6060
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-text">
+            <strong>E-mail</strong>
+            <a href="mailto:climacold.arcond@gmail.com">climacold.arcond@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">⏰</div>
+          <div class="contact-item-text">
+            <strong>Horário de Atendimento</strong>
+            Seg–Sex: 8h às 18h &nbsp;|&nbsp; Sáb: 8h às 12h
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group"><label>Nome</label><input type="text" placeholder="Seu nome completo" id="f-name"/></div>
+        <div class="form-group"><label>Telefone</label><input type="tel" placeholder="(17) 99628-6060" id="f-phone"/></div>
+      </div>
+      <div class="form-group"><label>E-mail</label><input type="email" placeholder="seu@email.com" id="f-email"/></div>
+      <div class="form-group">
+        <label>Serviço de interesse</label>
+        <select id="f-service">
+          <option value="">Selecione um serviço</option>
+          <option>Instalação de Ar-Condicionado</option>
+          <option>Manutenção Preventiva</option>
+          <option>Manutenção Corretiva</option>
+          <option>Projeto Comercial</option>
+          <option>Higienização</option>
+          <option>Contrato de Manutenção</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Mensagem</label><textarea rows="4" placeholder="Descreva sua necessidade..." id="f-msg"></textarea></div>
+      <button class="btn-primary" style="width:100%;border:none;font-size:.97rem;padding:1rem;cursor:pointer" onclick="sendForm(this)">Enviar Mensagem ✉️</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="ClimaColdArCondicionado.png" alt="Clima-Cold Ar-Condicionado" />
+  </div>
+  <p class="footer-copy">© 2026 Clima-Cold Ar-Condicionado · Todos os direitos reservados.</p>
+  <div class="footer-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#contato">Contato</a>
+  </div>
+</footer>
+
+<a href="#hero" class="scroll-top" id="scrollTop">↑</a>
+
+<a href="https://wa.me/5517996286060" target="_blank" class="whatsapp-btn">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  <span>Falar no WhatsApp</span>
+</a>
+
+<script>
+  // Particles
+  const pc = document.getElementById('particles');
+  for (let i = 0; i < 16; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const s = Math.random() * 5 + 2;
+    p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*12+8}s;animation-delay:${Math.random()*10}s;`;
+    pc.appendChild(p);
+  }
+
+  // Snow
+  const sw = document.getElementById('snow');
+  ['❄','❅','❆','·','✦'].forEach(f => {
+    for (let i = 0; i < 5; i++) {
+      const el = document.createElement('div');
+      el.className = 'flake';
+      el.textContent = f;
+      el.style.cssText = `left:${Math.random()*100}%;font-size:${Math.random()*12+7}px;animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*10}s;opacity:${Math.random()*.35+.1};`;
+      sw.appendChild(el);
+    }
+  });
+
+  // Navbar scroll
+  const nb = document.getElementById('navbar');
+  const st = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    nb.classList.toggle('scrolled', window.scrollY > 50);
+    st.classList.toggle('show', window.scrollY > 400);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+  );
+
+  // Reveal on scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Counters
+  function animCount(el, target, suffix) {
+    let cur = 0;
+    const step = target / 55;
+    const t = setInterval(() => {
+      cur += step;
+      if (cur >= target) { cur = target; clearInterval(t); }
+      const display = target >= 1000 ? (Math.floor(cur / 1000) + 'k') : Math.floor(cur);
+      el.innerHTML = display + '<span>' + suffix + '</span>';
+    }, 22);
+  }
+  const numObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.number-val').forEach(el =>
+          animCount(el, +el.dataset.target, el.dataset.suffix)
+        );
+        numObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  numObs.observe(document.getElementById('numeros'));
+
+  // Carousel
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots   = document.querySelectorAll('.dot');
+
+  function goToSlide(n) {
+    const vid = slides[currentSlide].querySelector('video');
+    if (vid) vid.pause();
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+  function changeSlide(dir) { goToSlide(currentSlide + dir); }
+
+  // Form → WhatsApp
+  function sendForm(btn) {
+    const name    = document.getElementById('f-name').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    const service = document.getElementById('f-service').value;
+    const msg     = document.getElementById('f-msg').value.trim();
+
+    if (!name)    { alert('Por favor, preencha seu nome.'); return; }
+    if (!phone)   { alert('Por favor, preencha seu telefone.'); return; }
+    if (!service) { alert('Por favor, selecione um serviço de interesse.'); return; }
+
+    const texto =
+      `Olá, vim pelo site da Clima-Cold! 😊\n\n` +
+      `*Nome:* ${name}\n` +
+      `*Telefone:* ${phone}\n` +
+      (email ? `*E-mail:* ${email}\n` : '') +
+      `*Serviço de interesse:* ${service}\n` +
+      (msg ? `*Mensagem:* ${msg}` : '');
+
+    window.open(`https://wa.me/5517996286060?text=${encodeURIComponent(texto)}`, '_blank');
+
+    btn.textContent = '✅ Abrindo WhatsApp...';
+    btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Enviar Mensagem ✉️';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 3500);
+  }
+</script>
+</body>
+</html>
