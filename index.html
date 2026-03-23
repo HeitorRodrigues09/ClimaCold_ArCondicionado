@@ -39,7 +39,6 @@
     }
     nav.scrolled { padding: 0.4rem 6%; min-height: 60px; }
 
-    /* LOGO — tamanho controlado sem cobrir nada */
     .nav-logo {
       text-decoration: none;
       display: flex;
@@ -242,19 +241,46 @@
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 5rem; align-items: center; position: relative; z-index: 1;
     }
+
+    /* ── ABOUT IMAGE — foto real da loja ── */
     .about-img-main {
       width: 100%;
-      background: linear-gradient(135deg, var(--navy), var(--blue-deep));
-      border-radius: 20px; aspect-ratio: 4/3;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 7rem;
+      border-radius: 20px;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
       box-shadow: 0 30px 80px rgba(6,78,128,.22);
-      position: relative; overflow: hidden;
+      /* remove background gradient e font-size do emoji */
+      background: var(--navy);
+      display: block;
+      font-size: 0;
     }
+    .about-img-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+      border-radius: 20px;
+      transition: transform .5s ease;
+    }
+    .about-img-main:hover img {
+      transform: scale(1.03);
+    }
+    /* Sutil overlay azul para harmonizar com a paleta */
     .about-img-main::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(0,198,255,.08), transparent);
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 55%,
+        rgba(4,31,56,.18) 100%
+      );
+      border-radius: 20px;
+      pointer-events: none;
     }
+
     .about-img-wrap { position: relative; }
     .about-badge-float {
       position: absolute; bottom: -18px; right: -18px;
@@ -576,7 +602,9 @@
 <section id="sobre">
   <div class="about-grid">
     <div class="about-img-wrap reveal">
-      <div class="about-img-main">🏢</div>
+      <div class="about-img-main">
+        <img src="ClimaColdLoja.webp" alt="Fachada da loja Clima-Cold Ar-Condicionado — Fernandópolis/SP" />
+      </div>
       <div class="about-badge-float"><div class="num">2012</div><div class="lbl">Fundação</div></div>
     </div>
     <div class="reveal">
@@ -603,11 +631,11 @@
     <p class="section-desc" style="margin:1rem auto 0">Soluções completas em climatização para residências, comércios e indústrias.</p>
   </div>
   <div class="services-grid">
-    <div class="service-card reveal"><div class="service-icon">❄️</div><h3>Instalação de Ar-Condicionado</h3><p>Instalação profissional de aparelhos split, multi-split e central com segurança e qualidade garantida.</p></div>
+    <div class="service-card reveal"><div class="service-icon">❄️</div><h3>Instalação de Ar-Condicionado</h3><p>Instalação técnica de sistemas de climatização, abrangendo desde modelos de janela, split hi-wall e portáteis até sistemas complexos como cassete, piso teto, multi-split, duto e cortinas de ar. Processo que segue rigorosamente as normas de segurança e os manuais dos fabricantes, garantindo o dimensionamento correto da tubulação. Uma instalação precisa que assegura máxima eficiência.</p></div>
     <div class="service-card reveal"><div class="service-icon">🔧</div><h3>Manutenção Preventiva</h3><p>Mantenha seu equipamento funcionando com máxima eficiência. Limpeza, revisão e troca de filtros.</p></div>
-    <div class="service-card reveal"><div class="service-icon">🛠️</div><h3>Manutenção Corretiva</h3><p>Diagnóstico e reparo rápido de falhas e defeitos. Atendimento emergencial disponível.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🛠️</div><h3>Defeitos Preventivos</h3><p>Diagnóstico e reparo rápido de falhas e defeitos.</p></div>
     <div class="service-card reveal"><div class="service-icon">🏗️</div><h3>Projetos Comerciais</h3><p>Projetos de climatização para escritórios, lojas e restaurantes com dimensionamento técnico especializado.</p></div>
-    <div class="service-card reveal"><div class="service-icon">🌡️</div><h3>Higienização</h3><p>Limpeza completa e higienização profunda para eliminar fungos, bactérias e garantir ar puro.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🌡️</div><h3>Higienização</h3><p>Higienização profunda com desmontagem técnica e aplicação de produtos bactericidas. Eliminando 99% de fungos e ácaros, revisando o sistema de dreno e garantindo que seu aparelho funcione com máxima eficiência e zero odores. Saúde para o seu ambiente e economia na sua conta de luz.</p></div>
     <div class="service-card reveal"><div class="service-icon">📋</div><h3>Contrato de Manutenção</h3><p>Planos de manutenção programada com visitas periódicas e condições especiais para sua empresa.</p></div>
   </div>
 </section>
@@ -676,20 +704,9 @@
         </video>
         <div class="slide-label">Vídeo institucional — Clima-Cold Ar-Condicionado</div>
       </div>
-      <!-- Para adicionar mais vídeos, copie o bloco abaixo e descomente:
-      <div class="carousel-slide" data-index="1">
-        <video controls preload="metadata">
-          <source src="ClimaColdVideo2.mp4" type="video/mp4">
-        </video>
-        <div class="slide-label">Título do vídeo 2</div>
-      </div>
-      -->
     </div>
     <div class="carousel-dots" id="carouselDots">
       <button class="dot active" onclick="goToSlide(0)"></button>
-      <!-- Adicione uma bolinha por vídeo novo:
-      <button class="dot" onclick="goToSlide(1)"></button>
-      -->
     </div>
   </div>
 </section>
