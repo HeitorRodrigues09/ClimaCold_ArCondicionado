@@ -36,12 +36,6 @@ O objetivo do site é aumentar a visibilidade da empresa na internet, gerar mais
 
 ---
 
-## 📷 Preview
-
-*(Adicione aqui imagens do site depois, tipo print da página inicial)*
-
----
-
 ## 📦 Como usar
 
 1. Clone o repositório:
@@ -58,15 +52,14 @@ git clone https://github.com/seu-usuario/seu-repositorio.git
 
 Caso queira entrar em contato ou contratar os serviços:
 
-* WhatsApp: *(coloque aqui)*
-* E-mail: *(coloque aqui)*
+* WhatsApp: *(17) 99628-6060*
+* E-mail: *climacoldarcond@gmail.com*
 
 ---
 
 ## 👨‍💻 Desenvolvedor
 
-Projeto desenvolvido por você 😎
-*(Se quiser, coloca seu nome ou @ do GitHub aqui)*
+Projeto desenvolvido por Heitor Rodrigues @HeitorRodrigues09 😎
 
 ---
 
