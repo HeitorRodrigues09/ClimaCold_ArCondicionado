@@ -29,9 +29,7 @@
       --accent: #00c6ff;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -40,12 +38,10 @@
       overflow-x: hidden;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
@@ -58,10 +54,7 @@
       min-height: 78px;
     }
 
-    nav.scrolled {
-      padding: 0.3rem 6%;
-      min-height: 64px;
-    }
+    nav.scrolled { padding: 0.3rem 6%; min-height: 64px; }
 
     .nav-brand {
       text-decoration: none;
@@ -79,9 +72,7 @@
       transition: height .3s;
     }
 
-    nav.scrolled .nav-brand img {
-      height: 68px;
-    }
+    nav.scrolled .nav-brand img { height: 68px; }
 
     .nav-brand-name {
       display: flex;
@@ -98,22 +89,18 @@
       white-space: nowrap;
     }
 
-    .nav-brand-name .brand-main span {
-      color: var(--accent);
-    }
+    .nav-brand-name .brand-main span { color: var(--accent); }
 
     .nav-brand-name .brand-sub {
       font-size: .68rem;
       font-weight: 400;
-      color: rgba(255, 255, 255, .45);
+      color: rgba(255,255,255,.45);
       letter-spacing: 1.5px;
       text-transform: uppercase;
       white-space: nowrap;
     }
 
-    nav.scrolled .nav-brand-name .brand-main {
-      font-size: 1.08rem;
-    }
+    nav.scrolled .nav-brand-name .brand-main { font-size: 1.08rem; }
 
     .nav-links {
       display: flex;
@@ -122,7 +109,7 @@
     }
 
     .nav-links a {
-      color: rgba(255, 255, 255, .75);
+      color: rgba(255,255,255,.75);
       text-decoration: none;
       font-size: .88rem;
       font-weight: 400;
@@ -130,9 +117,7 @@
       transition: color .2s;
     }
 
-    .nav-links a:hover {
-      color: var(--accent);
-    }
+    .nav-links a:hover { color: var(--accent); }
 
     .nav-cta {
       background: var(--blue-mid) !important;
@@ -154,6 +139,8 @@
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
+      padding: 6px;
+      border-radius: 8px;
     }
 
     .hamburger span {
@@ -162,9 +149,10 @@
       background: white;
       border-radius: 2px;
       transition: .3s;
+      display: block;
     }
 
-    /* HERO */
+    /* ── HERO ── */
     #hero {
       min-height: 100vh;
       background: var(--navy);
@@ -179,62 +167,38 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0, 198, 255, .1) 0%, transparent 65%),
-        radial-gradient(ellipse 40% 40% at 15% 80%, rgba(15, 143, 196, .15) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,198,255,.1) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 15% 80%, rgba(15,143,196,.15) 0%, transparent 60%);
     }
 
-    .particles {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-    }
+    .particles { position: absolute; inset: 0; overflow: hidden; }
 
     .particle {
       position: absolute;
       border-radius: 50%;
-      background: rgba(0, 198, 255, .22);
+      background: rgba(0,198,255,.22);
       animation: floatUp linear infinite;
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) scale(0);
-        opacity: 0;
-      }
-
-      10% {
-        opacity: 1;
-      }
-
-      90% {
-        opacity: .35;
-      }
-
-      100% {
-        transform: translateY(-120px) scale(1);
-        opacity: 0;
-      }
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: .35; }
+      100% { transform: translateY(-120px) scale(1); opacity: 0; }
     }
 
-    .snow {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
+    .snow { position: absolute; inset: 0; pointer-events: none; }
 
     .flake {
       position: absolute;
       top: -20px;
-      color: rgba(255, 255, 255, .3);
+      color: rgba(255,255,255,.3);
       user-select: none;
       animation: snowfall linear infinite;
     }
 
     @keyframes snowfall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
+      to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
     .hero-content {
@@ -247,8 +211,8 @@
       display: inline-flex;
       align-items: center;
       gap: .5rem;
-      background: rgba(0, 198, 255, .1);
-      border: 1px solid rgba(0, 198, 255, .28);
+      background: rgba(0,198,255,.1);
+      border: 1px solid rgba(0,198,255,.28);
       color: var(--accent);
       font-size: .78rem;
       font-weight: 500;
@@ -278,9 +242,7 @@
     h1 em::after {
       content: '';
       position: absolute;
-      left: 0;
-      bottom: 3px;
-      right: 0;
+      left: 0; bottom: 3px; right: 0;
       height: 3px;
       background: linear-gradient(90deg, var(--accent), transparent);
       border-radius: 2px;
@@ -291,7 +253,7 @@
       font-size: 1.02rem;
       font-weight: 300;
       line-height: 1.8;
-      color: rgba(255, 255, 255, .62);
+      color: rgba(255,255,255,.62);
       max-width: 480px;
       animation: fadeUp .8s .35s ease both;
     }
@@ -314,25 +276,25 @@
       text-decoration: none;
       border: none;
       cursor: pointer;
-      box-shadow: 0 8px 28px rgba(0, 198, 255, .3);
+      box-shadow: 0 8px 28px rgba(0,198,255,.3);
       transition: transform .2s, box-shadow .2s;
       display: inline-block;
     }
 
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 14px 40px rgba(0, 198, 255, .4);
+      box-shadow: 0 14px 40px rgba(0,198,255,.4);
     }
 
     .btn-ghost {
       background: transparent;
-      color: rgba(255, 255, 255, .8);
+      color: rgba(255,255,255,.8);
       padding: .88rem 2rem;
       border-radius: 50px;
       font-size: .93rem;
       font-weight: 400;
       text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, .24);
+      border: 1px solid rgba(255,255,255,.24);
       cursor: pointer;
       transition: border-color .2s, color .2s, transform .2s;
       display: inline-block;
@@ -350,7 +312,7 @@
       flex-wrap: wrap;
       margin-top: 3rem;
       padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, .1);
+      border-top: 1px solid rgba(255,255,255,.1);
       animation: fadeUp .8s .65s ease both;
     }
 
@@ -361,9 +323,7 @@
       color: var(--white);
     }
 
-    .stat-val span {
-      color: var(--accent);
-    }
+    .stat-val span { color: var(--accent); }
 
     .stat-label {
       font-size: .78rem;
@@ -387,8 +347,8 @@
     }
 
     .hero-ac-card {
-      background: rgba(255, 255, 255, .04);
-      border: 1px solid rgba(126, 200, 227, .18);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(126,200,227,.18);
       border-radius: 24px;
       padding: 2.6rem;
       backdrop-filter: blur(10px);
@@ -401,11 +361,9 @@
     .hero-ac-card::before {
       content: '';
       position: absolute;
-      top: -60px;
-      right: -60px;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(0, 198, 255, .12), transparent 70%);
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(0,198,255,.12), transparent 70%);
     }
 
     .ac-card-logo {
@@ -414,7 +372,7 @@
       object-fit: contain;
       display: block;
       margin: 0 auto .6rem;
-      filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(0, 198, 255, .5));
+      filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(0,198,255,.5));
     }
 
     .ac-icon-big {
@@ -425,15 +383,8 @@
     }
 
     @keyframes glow {
-
-      0%,
-      100% {
-        filter: drop-shadow(0 0 18px rgba(0, 198, 255, .4));
-      }
-
-      50% {
-        filter: drop-shadow(0 0 50px rgba(0, 198, 255, .85));
-      }
+      0%,100% { filter: drop-shadow(0 0 18px rgba(0,198,255,.4)); }
+      50%      { filter: drop-shadow(0 0 50px rgba(0,198,255,.85)); }
     }
 
     .ac-card-title {
@@ -451,14 +402,12 @@
       color: var(--accent);
     }
 
-    .ac-card-temp sub {
-      font-size: 1.1rem;
-    }
+    .ac-card-temp sub { font-size: 1.1rem; }
 
     .ac-card-status {
       margin-top: .8rem;
       font-size: .8rem;
-      color: rgba(255, 255, 255, .45);
+      color: rgba(255,255,255,.45);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -466,29 +415,19 @@
     }
 
     .status-dot {
-      width: 8px;
-      height: 8px;
+      width: 8px; height: 8px;
       background: #22c55e;
       border-radius: 50%;
       animation: blink 1.5s ease infinite;
     }
 
     @keyframes blink {
-
-      0%,
-      100% {
-        opacity: 1
-      }
-
-      50% {
-        opacity: .25
-      }
+      0%,100% { opacity: 1 }
+      50%      { opacity: .25 }
     }
 
-    /* SECTIONS */
-    section {
-      padding: 6rem 6%;
-    }
+    /* ── SECTIONS ── */
+    section { padding: 6rem 6%; }
 
     .section-label {
       display: inline-block;
@@ -508,9 +447,7 @@
       color: var(--navy);
     }
 
-    .section-title span {
-      color: var(--blue-mid);
-    }
+    .section-title span { color: var(--blue-mid); }
 
     .section-desc {
       max-width: 540px;
@@ -521,7 +458,7 @@
       font-weight: 300;
     }
 
-    /* ABOUT */
+    /* ── ABOUT ── */
     #sobre {
       background: var(--ice);
       position: relative;
@@ -531,11 +468,9 @@
     #sobre::before {
       content: '';
       position: absolute;
-      right: -10%;
-      top: -15%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(15, 143, 196, .07), transparent 60%);
+      right: -10%; top: -15%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(15,143,196,.07), transparent 60%);
       border-radius: 50%;
     }
 
@@ -554,7 +489,7 @@
       aspect-ratio: 4/3;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 30px 80px rgba(6, 78, 128, .22);
+      box-shadow: 0 30px 80px rgba(6,78,128,.22);
       background: var(--navy);
       display: block;
       font-size: 0;
@@ -570,31 +505,26 @@
       transition: transform .5s ease;
     }
 
-    .about-img-main:hover img {
-      transform: scale(1.03);
-    }
+    .about-img-main:hover img { transform: scale(1.03); }
 
     .about-img-main::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, transparent 55%, rgba(4, 31, 56, .18) 100%);
+      background: linear-gradient(to bottom, transparent 55%, rgba(4,31,56,.18) 100%);
       border-radius: 20px;
       pointer-events: none;
     }
 
-    .about-img-wrap {
-      position: relative;
-    }
+    .about-img-wrap { position: relative; }
 
     .about-badge-float {
       position: absolute;
-      bottom: -18px;
-      right: -18px;
+      bottom: -18px; right: -18px;
       background: var(--white);
       border-radius: 16px;
       padding: 1.1rem 1.4rem;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, .1);
+      box-shadow: 0 10px 40px rgba(0,0,0,.1);
       text-align: center;
     }
 
@@ -605,11 +535,7 @@
       color: var(--blue-mid);
     }
 
-    .about-badge-float .lbl {
-      font-size: .75rem;
-      color: var(--gray);
-      margin-top: .15rem;
-    }
+    .about-badge-float .lbl { font-size: .75rem; color: var(--gray); margin-top: .15rem; }
 
     .about-list {
       list-style: none;
@@ -636,10 +562,8 @@
       flex-shrink: 0;
     }
 
-    /* SERVICES */
-    #servicos {
-      background: var(--white);
-    }
+    /* ── SERVICES ── */
+    #servicos { background: var(--white); }
 
     .services-grid {
       display: grid;
@@ -661,9 +585,7 @@
     .service-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 3px;
       background: linear-gradient(90deg, var(--blue-mid), var(--accent));
       transform: scaleX(0);
@@ -673,18 +595,15 @@
 
     .service-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 55px rgba(15, 143, 196, .1);
+      box-shadow: 0 20px 55px rgba(15,143,196,.1);
       border-color: var(--blue-light);
     }
 
-    .service-card:hover::before {
-      transform: scaleX(1);
-    }
+    .service-card:hover::before { transform: scaleX(1); }
 
     .service-icon {
-      width: 52px;
-      height: 52px;
-      background: linear-gradient(135deg, rgba(15, 143, 196, .1), rgba(0, 198, 255, .1));
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, rgba(15,143,196,.1), rgba(0,198,255,.1));
       border-radius: 14px;
       display: flex;
       align-items: center;
@@ -701,13 +620,9 @@
       margin-bottom: .65rem;
     }
 
-    .service-card p {
-      font-size: .88rem;
-      color: #6a8090;
-      line-height: 1.72;
-    }
+    .service-card p { font-size: .88rem; color: #6a8090; line-height: 1.72; }
 
-    /* NUMBERS */
+    /* ── NUMBERS ── */
     #numeros {
       background: var(--navy);
       padding: 5rem 6%;
@@ -719,7 +634,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(0, 198, 255, .06), transparent 70%);
+      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(0,198,255,.06), transparent 70%);
     }
 
     .numbers-grid {
@@ -731,14 +646,8 @@
       text-align: center;
     }
 
-    .number-item {
-      padding: 1.8rem;
-    }
-
-    .number-icon {
-      font-size: 1.9rem;
-      margin-bottom: .7rem;
-    }
+    .number-item { padding: 1.8rem; }
+    .number-icon { font-size: 1.9rem; margin-bottom: .7rem; }
 
     .number-val {
       font-family: 'Syne', sans-serif;
@@ -748,9 +657,7 @@
       line-height: 1;
     }
 
-    .number-val span {
-      color: var(--accent);
-    }
+    .number-val span { color: var(--accent); }
 
     .number-label {
       font-size: .8rem;
@@ -760,83 +667,8 @@
       letter-spacing: 1px;
     }
 
-    /* TESTIMONIALS */
-    #depoimentos {
-      background: var(--ice);
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.4rem;
-      margin-top: 3.5rem;
-    }
-
-    .testi-card {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 1.9rem;
-      box-shadow: 0 4px 28px rgba(0, 0, 0, .055);
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
-      transition: transform .3s;
-    }
-
-    .testi-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .testi-stars {
-      color: #f59e0b;
-      font-size: .95rem;
-      letter-spacing: 2px;
-    }
-
-    .testi-text {
-      font-size: .9rem;
-      color: #4a6070;
-      line-height: 1.75;
-      font-style: italic;
-    }
-
-    .testi-author {
-      display: flex;
-      align-items: center;
-      gap: .85rem;
-      margin-top: auto;
-    }
-
-    .testi-avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue-mid), var(--accent));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      font-weight: 700;
-      color: white;
-      font-family: 'Syne', sans-serif;
-      flex-shrink: 0;
-    }
-
-    .testi-name {
-      font-weight: 600;
-      font-size: .88rem;
-      color: var(--navy);
-    }
-
-    .testi-city {
-      font-size: .76rem;
-      color: var(--gray);
-    }
-
-    /* TEAM */
-    #equipe {
-      background: var(--white);
-    }
+    /* ── TEAM ── */
+    #equipe { background: var(--white); }
 
     .team-grid {
       display: grid;
@@ -855,12 +687,11 @@
 
     .team-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 50px rgba(15, 143, 196, .1);
+      box-shadow: 0 15px 50px rgba(15,143,196,.1);
     }
 
     .team-avatar {
-      width: 78px;
-      height: 78px;
+      width: 78px; height: 78px;
       border-radius: 50%;
       margin: 0 auto 1rem;
       background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
@@ -868,7 +699,7 @@
       align-items: center;
       justify-content: center;
       font-size: 2rem;
-      border: 3px solid rgba(0, 198, 255, .18);
+      border: 3px solid rgba(0,198,255,.18);
     }
 
     .team-name {
@@ -879,12 +710,9 @@
       margin-bottom: .3rem;
     }
 
-    .team-role {
-      font-size: .8rem;
-      color: var(--gray);
-    }
+    .team-role { font-size: .8rem; color: var(--gray); }
 
-    /* VIDEO CAROUSEL */
+    /* ── VIDEO CAROUSEL ── */
     #videos {
       background: var(--navy);
       padding: 5rem 6%;
@@ -896,27 +724,14 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0, 198, 255, .07), transparent 70%);
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,198,255,.07), transparent 70%);
       pointer-events: none;
     }
 
-    .videos-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .videos-header .section-title {
-      color: var(--white);
-    }
-
-    .videos-header .section-label {
-      color: var(--accent);
-    }
-
-    .videos-header .section-desc {
-      color: rgba(255, 255, 255, .45);
-      margin: .8rem auto 0;
-    }
+    .videos-header { text-align: center; margin-bottom: 3rem; }
+    .videos-header .section-title { color: var(--white); }
+    .videos-header .section-label { color: var(--accent); }
+    .videos-header .section-desc { color: rgba(255,255,255,.45); margin: .8rem auto 0; }
 
     .carousel-wrapper {
       position: relative;
@@ -925,26 +740,16 @@
       padding: 0 64px;
     }
 
-    .carousel-track {
-      position: relative;
-      width: 100%;
-    }
-
-    .carousel-slide {
-      display: none;
-    }
-
-    .carousel-slide.active {
-      display: block;
-      animation: fadeIn .45s ease;
-    }
+    .carousel-track { position: relative; width: 100%; }
+    .carousel-slide { display: none; }
+    .carousel-slide.active { display: block; animation: fadeIn .45s ease; }
 
     .carousel-slide video {
       width: 100%;
       border-radius: 18px;
       display: block;
-      box-shadow: 0 20px 60px rgba(0, 198, 255, .2);
-      border: 1px solid rgba(126, 200, 227, .2);
+      box-shadow: 0 20px 60px rgba(0,198,255,.2);
+      border: 1px solid rgba(126,200,227,.2);
       background: #000;
       max-height: 500px;
     }
@@ -953,18 +758,16 @@
       text-align: center;
       margin-top: 1rem;
       font-size: .84rem;
-      color: rgba(255, 255, 255, .4);
+      color: rgba(255,255,255,.4);
       font-style: italic;
     }
 
     .carousel-btn {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 46px;
-      height: 46px;
-      background: rgba(0, 198, 255, .12);
-      border: 1px solid rgba(0, 198, 255, .3);
+      top: 50%; transform: translateY(-50%);
+      width: 46px; height: 46px;
+      background: rgba(0,198,255,.12);
+      border: 1px solid rgba(0,198,255,.3);
       border-radius: 50%;
       color: var(--white);
       font-size: 1.2rem;
@@ -981,13 +784,8 @@
       transform: translateY(-50%) scale(1.1);
     }
 
-    .carousel-btn.prev {
-      left: 0;
-    }
-
-    .carousel-btn.next {
-      right: 0;
-    }
+    .carousel-btn.prev { left: 0; }
+    .carousel-btn.next { right: 0; }
 
     .carousel-dots {
       display: flex;
@@ -997,22 +795,18 @@
     }
 
     .dot {
-      width: 10px;
-      height: 10px;
+      width: 10px; height: 10px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, .22);
+      background: rgba(255,255,255,.22);
       cursor: pointer;
       transition: background .3s, transform .3s;
       border: none;
       padding: 0;
     }
 
-    .dot.active {
-      background: var(--accent);
-      transform: scale(1.35);
-    }
+    .dot.active { background: var(--accent); transform: scale(1.35); }
 
-    /* CONTACT */
+    /* ── CONTACT ── */
     #contato {
       background: var(--navy);
       position: relative;
@@ -1023,7 +817,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(0, 198, 255, .07), transparent 70%);
+      background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(0,198,255,.07), transparent 70%);
     }
 
     .contact-grid {
@@ -1035,17 +829,9 @@
       z-index: 1;
     }
 
-    .contact-info .section-title {
-      color: var(--white);
-    }
-
-    .contact-info .section-label {
-      color: var(--accent);
-    }
-
-    .contact-info .section-desc {
-      color: rgba(255, 255, 255, .48);
-    }
+    .contact-info .section-title { color: var(--white); }
+    .contact-info .section-label { color: var(--accent); }
+    .contact-info .section-desc { color: rgba(255,255,255,.48); }
 
     .contact-details {
       margin-top: 2.2rem;
@@ -1054,17 +840,12 @@
       gap: 1.1rem;
     }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: .9rem;
-    }
+    .contact-item { display: flex; align-items: center; gap: .9rem; }
 
     .contact-item-icon {
-      width: 42px;
-      height: 42px;
-      background: rgba(0, 198, 255, .09);
-      border: 1px solid rgba(0, 198, 255, .18);
+      width: 42px; height: 42px;
+      background: rgba(0,198,255,.09);
+      border: 1px solid rgba(0,198,255,.18);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -1073,11 +854,7 @@
       flex-shrink: 0;
     }
 
-    .contact-item-text {
-      font-size: .9rem;
-      color: rgba(255, 255, 255, .6);
-      line-height: 1.5;
-    }
+    .contact-item-text { font-size: .9rem; color: rgba(255,255,255,.6); line-height: 1.5; }
 
     .contact-item-text strong {
       color: var(--white);
@@ -1086,32 +863,23 @@
       margin-bottom: .05rem;
     }
 
-    .contact-item-text a {
-      color: rgba(255, 255, 255, .6);
-      text-decoration: none;
-      transition: color .2s;
-    }
-
-    .contact-item-text a:hover {
-      color: var(--accent);
-    }
+    .contact-item-text a { color: rgba(255,255,255,.6); text-decoration: none; transition: color .2s; }
+    .contact-item-text a:hover { color: var(--accent); }
 
     .contact-form {
-      background: rgba(255, 255, 255, .04);
-      border: 1px solid rgba(126, 200, 227, .14);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(126,200,227,.14);
       border-radius: 24px;
       padding: 2.4rem;
       backdrop-filter: blur(8px);
     }
 
-    .form-group {
-      margin-bottom: 1.15rem;
-    }
+    .form-group { margin-bottom: 1.15rem; }
 
     .form-group label {
       display: block;
       font-size: .78rem;
-      color: rgba(255, 255, 255, .45);
+      color: rgba(255,255,255,.45);
       margin-bottom: .45rem;
       text-transform: uppercase;
       letter-spacing: .5px;
@@ -1121,8 +889,8 @@
     .form-group textarea,
     .form-group select {
       width: 100%;
-      background: rgba(255, 255, 255, .06);
-      border: 1px solid rgba(126, 200, 227, .18);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(126,200,227,.18);
       border-radius: 12px;
       padding: .82rem 1.1rem;
       color: var(--white);
@@ -1134,20 +902,16 @@
     }
 
     .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: rgba(255, 255, 255, .22);
-    }
+    .form-group textarea::placeholder { color: rgba(255,255,255,.22); }
 
     .form-group input:focus,
     .form-group textarea:focus,
     .form-group select:focus {
       border-color: var(--accent);
-      background: rgba(0, 198, 255, .05);
+      background: rgba(0,198,255,.05);
     }
 
-    .form-group select option {
-      background: var(--navy);
-    }
+    .form-group select option { background: var(--navy); }
 
     .form-row {
       display: grid;
@@ -1155,7 +919,7 @@
       gap: 1rem;
     }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
       background: #020f1c;
       padding: 2.8rem 6%;
@@ -1164,7 +928,7 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1.2rem;
-      border-top: 1px solid rgba(126, 200, 227, .1);
+      border-top: 1px solid rgba(126,200,227,.1);
     }
 
     .footer-brand {
@@ -1175,8 +939,7 @@
     }
 
     .footer-brand img {
-      height: 44px;
-      width: auto;
+      height: 44px; width: auto;
       object-fit: contain;
       filter: brightness(0) invert(1);
     }
@@ -1185,22 +948,14 @@
       font-family: 'Syne', sans-serif;
       font-size: .95rem;
       font-weight: 700;
-      color: rgba(255, 255, 255, .6);
+      color: rgba(255,255,255,.6);
     }
 
-    .footer-brand-name span {
-      color: var(--accent);
-    }
+    .footer-brand-name span { color: var(--accent); }
 
-    .footer-copy {
-      font-size: .8rem;
-      color: var(--gray);
-    }
+    .footer-copy { font-size: .8rem; color: var(--gray); }
 
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
+    .footer-links { display: flex; gap: 1.5rem; }
 
     .footer-links a {
       font-size: .8rem;
@@ -1209,31 +964,17 @@
       transition: color .2s;
     }
 
-    .footer-links a:hover {
-      color: var(--accent);
-    }
+    .footer-links a:hover { color: var(--accent); }
 
-    /* ANIMATIONS */
+    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(28px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0
-      }
-
-      to {
-        opacity: 1
-      }
+      from { opacity: 0 }
+      to   { opacity: 1 }
     }
 
     .reveal {
@@ -1242,18 +983,13 @@
       transition: opacity .65s ease, transform .65s ease;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* SCROLL TOP */
+    /* ── SCROLL TOP ── */
     .scroll-top {
       position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 44px;
-      height: 44px;
+      bottom: 2rem; right: 2rem;
+      width: 44px; height: 44px;
       background: var(--blue-mid);
       border-radius: 50%;
       display: flex;
@@ -1262,7 +998,7 @@
       color: white;
       font-size: 1.1rem;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(15, 143, 196, .4);
+      box-shadow: 0 6px 20px rgba(15,143,196,.4);
       opacity: 0;
       pointer-events: none;
       transition: opacity .3s, transform .3s;
@@ -1270,20 +1006,13 @@
       z-index: 99;
     }
 
-    .scroll-top.show {
-      opacity: 1;
-      pointer-events: all;
-    }
+    .scroll-top.show { opacity: 1; pointer-events: all; }
+    .scroll-top:hover { transform: translateY(-3px); }
 
-    .scroll-top:hover {
-      transform: translateY(-3px);
-    }
-
-    /* WHATSAPP */
+    /* ── WHATSAPP ── */
     .whatsapp-btn {
       position: fixed;
-      bottom: 2rem;
-      left: 2rem;
+      bottom: 2rem; left: 2rem;
       z-index: 99;
       background: #25d366;
       color: white;
@@ -1295,111 +1024,221 @@
       font-size: .88rem;
       font-weight: 500;
       text-decoration: none;
-      box-shadow: 0 6px 24px rgba(37, 211, 102, .4);
+      box-shadow: 0 6px 24px rgba(37,211,102,.4);
       transition: transform .2s, box-shadow .2s;
     }
 
     .whatsapp-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 32px rgba(37, 211, 102, .5);
+      box-shadow: 0 10px 32px rgba(37,211,102,.5);
     }
 
-    /* MOBILE */
+    /* ════════════════════════════════════════
+       MOBILE — tudo abaixo de 900px
+    ════════════════════════════════════════ */
     @media (max-width: 900px) {
+
+      /* ── nav mobile ── */
+      nav {
+        padding: 0 5%;
+        min-height: 70px;
+      }
+
+      .nav-brand img { height: 62px; }
+
+      .nav-brand-name .brand-main { font-size: 1rem; }
+      .nav-brand-name .brand-sub  { display: none; }
+
       .nav-links {
         display: none;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 0;
         position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(4, 31, 56, .97);
-        padding: 2rem 6%;
+        top: 100%; left: 0; right: 0;
+        background: rgba(4, 31, 56, .99);
+        padding: 1rem 5% 1.5rem;
+        border-bottom: 1px solid rgba(0,198,255,.1);
       }
 
-      .nav-links.open {
-        display: flex;
-      }
+      .nav-links.open { display: flex; }
 
-      .hamburger {
-        display: flex;
-      }
+      .nav-links li { border-bottom: 1px solid rgba(255,255,255,.06); }
 
-      .nav-brand-name .brand-main {
+      .nav-links a {
+        display: block;
+        padding: 1rem 0;
         font-size: 1rem;
       }
 
-      .nav-brand-name .brand-sub {
-        display: none;
+      .nav-cta {
+        margin-top: .5rem;
+        text-align: center;
+        border-radius: 12px !important;
+        padding: .9rem 1rem !important;
       }
 
-      .hero-visual {
-        display: none;
+      .hamburger { display: flex; }
+
+      /* ── hero mobile ── */
+      #hero {
+        padding: 6.5rem 5% 3.5rem;
+        min-height: 100svh;
+        align-items: flex-start;
       }
 
-      .hero-content {
+      .hero-visual { display: none; }
+      .hero-content { max-width: 100%; }
+
+      h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+
+      .hero-sub {
+        font-size: .95rem;
         max-width: 100%;
       }
 
-      .hero-brand-logo {
-        height: 60px;
+      .hero-actions {
+        flex-direction: column;
+        gap: .85rem;
       }
 
-      .hero-brand-text .hb-name {
-        font-size: 1.6rem;
+      .hero-actions .btn-primary,
+      .hero-actions .btn-ghost {
+        text-align: center;
+        width: 100%;
+        padding: 1rem 1.5rem;
       }
 
-      .about-grid,
-      .contact-grid {
+      .hero-stats {
+        gap: 1.5rem 2rem;
+        margin-top: 2.2rem;
+        padding-top: 1.8rem;
+      }
+
+      .stat-val { font-size: 1.7rem; }
+      .stat-label { font-size: .72rem; }
+
+      /* ── sobre mobile ── */
+      #sobre { padding: 4rem 5%; }
+
+      .about-grid {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 3.5rem;
       }
 
-      .services-grid,
-      .testimonials-grid {
+      .about-badge-float {
+        bottom: -14px; right: 8px;
+      }
+
+      /* ── serviços mobile ── */
+      #servicos { padding: 4rem 5%; }
+
+      .services-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 2.5rem;
       }
 
-      .team-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .service-card { padding: 1.6rem; }
+
+      /* ── números mobile ── */
+      #numeros { padding: 4rem 5%; }
 
       .numbers-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 0;
       }
 
-      .form-row {
-        grid-template-columns: 1fr;
+      .number-item {
+        padding: 1.6rem 1rem;
+        border-bottom: 1px solid rgba(255,255,255,.06);
       }
 
-      footer {
-        flex-direction: column;
-        text-align: center;
-      }
+      .number-item:nth-child(1),
+      .number-item:nth-child(2) { border-right: 1px solid rgba(255,255,255,.06); }
 
-      .whatsapp-btn span {
-        display: none;
-      }
+      .number-val { font-size: 2.4rem; }
 
-      .whatsapp-btn {
-        padding: .75rem;
-        border-radius: 50%;
-      }
-
-      .carousel-wrapper {
-        padding: 0 50px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero-stats {
-        gap: 1.5rem;
-      }
+      /* ── equipe mobile ── */
+      #equipe { padding: 4rem 5%; }
 
       .team-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-top: 2.5rem;
       }
+
+      .team-card {
+        padding: 1.5rem .8rem;
+      }
+
+      .team-avatar {
+        width: 62px; height: 62px;
+        font-size: 1.6rem;
+      }
+
+      .team-name { font-size: .9rem; }
+      .team-role { font-size: .74rem; }
+
+      /* ── vídeos mobile ── */
+      #videos { padding: 4rem 5%; }
+
+      .carousel-wrapper { padding: 0 44px; }
+
+      .carousel-btn {
+        width: 38px; height: 38px;
+        font-size: 1rem;
+      }
+
+      /* ── contato mobile ── */
+      #contato { padding: 4rem 5%; }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .contact-form {
+        padding: 1.6rem;
+        border-radius: 20px;
+      }
+
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+
+      /* ── footer mobile ── */
+      footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 2.2rem 5%;
+        gap: 1rem;
+      }
+
+      .footer-links { justify-content: center; }
+
+      /* ── whatsapp mobile ── */
+      .whatsapp-btn span { display: none; }
+      .whatsapp-btn {
+        padding: .85rem;
+        border-radius: 50%;
+        bottom: 1.5rem;
+        left: 1.5rem;
+      }
+
+      .scroll-top {
+        bottom: 1.5rem;
+        right: 1.5rem;
+      }
+
+      /* ── seção geral mobile ── */
+      section { padding: 4rem 5%; }
+
+      .section-title { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+    }
+
+    /* ── Extra small ── */
+    @media (max-width: 400px) {
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .numbers-grid { grid-template-columns: 1fr 1fr; }
+      h1 { font-size: 1.9rem; }
     }
   </style>
 </head>
@@ -1415,7 +1254,6 @@
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#servicos">Serviços</a></li>
       <li><a href="#equipe">Equipe</a></li>
-      <li><a href="#depoimentos">Depoimentos</a></li>
       <li><a href="#contato" class="nav-cta">Solicitar Orçamento</a></li>
     </ul>
     <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -1429,7 +1267,6 @@
     <div class="particles" id="particles"></div>
     <div class="snow" id="snow"></div>
     <div class="hero-content">
-
       <div class="hero-badge">❄ Desde 2012 no Mercado</div>
       <h1>Conforto que<br /><em>refresca</em> sua vida</h1>
       <p class="hero-sub">A Clima-Cold é referência em ar-condicionado na região. Instalação, manutenção e suporte com
@@ -1518,8 +1355,7 @@
       <div class="service-card reveal">
         <div class="service-icon">🛠️</div>
         <h3>Diagnóstico de Defeitos</h3>
-        <p>Identificação precisa da origem das falhas para garantir um reparo definitivo e seguro em seus equipamentos.
-        </p>
+        <p>Identificação precisa da origem das falhas para garantir um reparo definitivo e seguro em seus equipamentos.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-icon">✨</div>
@@ -1535,8 +1371,7 @@
       <div class="service-card reveal">
         <div class="service-icon">🏗️</div>
         <h3>Projetos Comerciais</h3>
-        <p>Projetos de climatização para escritórios, lojas e restaurantes com dimensionamento técnico especializado.
-        </p>
+        <p>Projetos de climatização para escritórios, lojas e restaurantes com dimensionamento técnico especializado.</p>
       </div>
     </div>
   </section>
@@ -1563,52 +1398,6 @@
         <div class="number-icon">⭐</div>
         <div class="number-val" data-target="98" data-suffix="%">98<span>%</span></div>
         <div class="number-label">Índice de Satisfação</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DEPOIMENTOS -->
-  <section id="depoimentos">
-    <div style="text-align:center" class="reveal">
-      <span class="section-label">Depoimentos</span>
-      <h2 class="section-title">O que nossos <span>clientes</span> dizem</h2>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Serviço impecável! A equipe da Clima-Cold instalou meu ar-condicionado com agilidade e
-          limpeza total. Super recomendo para quem busca qualidade de verdade."</p>
-        <div class="testi-author">
-          <div class="testi-avatar">M</div>
-          <div>
-            <div class="testi-name">Maria Fernanda S.</div>
-            <div class="testi-city">Fernandópolis — SP</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Precisei de manutenção urgente no meu escritório e eles atenderam no mesmo dia.
-          Profissionais excelentes, preço justo. Sem dúvida a melhor empresa da região!"</p>
-        <div class="testi-author">
-          <div class="testi-avatar">R</div>
-          <div>
-            <div class="testi-name">Roberto Almeida</div>
-            <div class="testi-city">Votuporanga — SP</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Contratei o plano de manutenção para minha loja e foi a melhor decisão. Meus aparelhos
-          nunca funcionaram tão bem. Equipe pontual e super atenciosa."</p>
-        <div class="testi-author">
-          <div class="testi-avatar">A</div>
-          <div>
-            <div class="testi-name">Ana Paula C.</div>
-            <div class="testi-city">Fernandópolis — SP</div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -1705,7 +1494,6 @@
         <div class="carousel-slide active" data-index="0">
           <video controls preload="metadata">
             <source src="ClimaColdVideo.mp4" type="video/mp4">
-            <source src="" type="video/">
           </video>
           <div class="slide-label">Vídeo institucional — Clima-Cold Ar-Condicionado</div>
         </div>
@@ -1757,13 +1545,10 @@
       </div>
       <div class="contact-form reveal">
         <div class="form-row">
-          <div class="form-group"><label>Nome</label><input type="text" placeholder="Seu nome completo" id="f-name" />
-          </div>
-          <div class="form-group"><label>Telefone</label><input type="tel" placeholder="(17) 99628-6060" id="f-phone" />
-          </div>
+          <div class="form-group"><label>Nome</label><input type="text" placeholder="Seu nome completo" id="f-name" /></div>
+          <div class="form-group"><label>Telefone</label><input type="tel" placeholder="(17) 99628-6060" id="f-phone" /></div>
         </div>
-        <div class="form-group"><label>E-mail</label><input type="email" placeholder="seu@email.com" id="f-email" />
-        </div>
+        <div class="form-group"><label>E-mail</label><input type="email" placeholder="seu@email.com" id="f-email" /></div>
         <div class="form-group">
           <label>Serviço de interesse</label>
           <select id="f-service">
@@ -1775,8 +1560,7 @@
             <option>Contrato de Manutenção</option>
           </select>
         </div>
-        <div class="form-group"><label>Mensagem</label><textarea rows="4" placeholder="Descreva sua necessidade..."
-            id="f-msg"></textarea></div>
+        <div class="form-group"><label>Mensagem</label><textarea rows="4" placeholder="Descreva sua necessidade..." id="f-msg"></textarea></div>
         <button class="btn-primary" style="width:100%;border:none;font-size:.97rem;padding:1rem;cursor:pointer"
           onclick="sendForm(this)">Enviar Mensagem ✉️</button>
       </div>
@@ -1801,33 +1585,35 @@
 
   <a href="https://wa.me/5517996286060" target="_blank" class="whatsapp-btn">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-      <path
-        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
     </svg>
     <span>Falar no WhatsApp</span>
   </a>
 
   <script>
+    // Partículas
     const pc = document.getElementById('particles');
     for (let i = 0; i < 16; i++) {
       const p = document.createElement('div');
       p.className = 'particle';
       const s = Math.random() * 5 + 2;
-      p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;animation-duration:${Math.random() * 12 + 8}s;animation-delay:${Math.random() * 10}s;`;
+      p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*12+8}s;animation-delay:${Math.random()*10}s;`;
       pc.appendChild(p);
     }
 
+    // Neve
     const sw = document.getElementById('snow');
-    ['❄', '❅', '❆', '·', '✦'].forEach(f => {
+    ['❄','❅','❆','·','✦'].forEach(f => {
       for (let i = 0; i < 5; i++) {
         const el = document.createElement('div');
         el.className = 'flake';
         el.textContent = f;
-        el.style.cssText = `left:${Math.random() * 100}%;font-size:${Math.random() * 12 + 7}px;animation-duration:${Math.random() * 14 + 8}s;animation-delay:${Math.random() * 10}s;opacity:${Math.random() * .35 + .1};`;
+        el.style.cssText = `left:${Math.random()*100}%;font-size:${Math.random()*12+7}px;animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*10}s;opacity:${Math.random()*.35+.1};`;
         sw.appendChild(el);
       }
     });
 
+    // Navbar scroll
     const nb = document.getElementById('navbar');
     const st = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
@@ -1835,6 +1621,7 @@
       st.classList.toggle('show', window.scrollY > 400);
     });
 
+    // Menu mobile
     function toggleMenu() {
       document.getElementById('navLinks').classList.toggle('open');
     }
@@ -1842,6 +1629,7 @@
       a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
     );
 
+    // Reveal on scroll
     const obs = new IntersectionObserver(entries => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
@@ -1852,13 +1640,14 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
+    // Contador animado
     function animCount(el, target, suffix) {
       let cur = 0;
       const step = target / 55;
       const t = setInterval(() => {
         cur += step;
         if (cur >= target) { cur = target; clearInterval(t); }
-        const display = target >= 1000 ? (Math.floor(cur / 1000) + 'k') : Math.floor(cur);
+        const display = target >= 1000 ? (Math.floor(cur/1000) + 'k') : Math.floor(cur);
         el.innerHTML = display + '<span>' + suffix + '</span>';
       }, 22);
     }
@@ -1874,9 +1663,10 @@
     }, { threshold: 0.3 });
     numObs.observe(document.getElementById('numeros'));
 
+    // Carrossel
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
-    const dots = document.querySelectorAll('.dot');
+    const dots   = document.querySelectorAll('.dot');
 
     function goToSlide(n) {
       const vid = slides[currentSlide].querySelector('video');
@@ -1889,24 +1679,25 @@
     }
     function changeSlide(dir) { goToSlide(currentSlide + dir); }
 
+    // Formulário → WhatsApp
     function sendForm(btn) {
-      const name = document.getElementById('f-name').value.trim();
-      const phone = document.getElementById('f-phone').value.trim();
-      const email = document.getElementById('f-email').value.trim();
+      const name    = document.getElementById('f-name').value.trim();
+      const phone   = document.getElementById('f-phone').value.trim();
+      const email   = document.getElementById('f-email').value.trim();
       const service = document.getElementById('f-service').value;
-      const msg = document.getElementById('f-msg').value.trim();
+      const msg     = document.getElementById('f-msg').value.trim();
 
-      if (!name) { alert('Por favor, preencha seu nome.'); return; }
-      if (!phone) { alert('Por favor, preencha seu telefone.'); return; }
-      if (!service) { alert('Por favor, selecione um serviço de interesse.'); return; }
+      if (!name)    { alert('Por favor, preencha seu nome.');                    return; }
+      if (!phone)   { alert('Por favor, preencha seu telefone.');                return; }
+      if (!service) { alert('Por favor, selecione um serviço de interesse.');    return; }
 
       const texto =
         `Olá, vim pelo site da Clima-Cold! 😊\n\n` +
         `*Nome:* ${name}\n` +
         `*Telefone:* ${phone}\n` +
-        (email ? `*E-mail:* ${email}\n` : '') +
+        (email   ? `*E-mail:* ${email}\n`       : '') +
         `*Serviço de interesse:* ${service}\n` +
-        (msg ? `*Mensagem:* ${msg}` : '');
+        (msg     ? `*Mensagem:* ${msg}`          : '');
 
       window.open(`https://wa.me/5517996286060?text=${encodeURIComponent(texto)}`, '_blank');
 
@@ -1921,5 +1712,4 @@
     }
   </script>
 </body>
-
 </html>
