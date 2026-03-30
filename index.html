@@ -40,7 +40,7 @@
       overflow-x: hidden;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed;
       top: 0;
@@ -50,36 +50,69 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.6rem 6%;
-      background: rgba(4, 31, 56, 0.95);
+      padding: 0.5rem 6%;
+      background: rgba(4, 31, 56, 0.97);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(126, 200, 227, 0.12);
       transition: padding .3s;
-      min-height: 70px;
+      min-height: 78px;
     }
 
     nav.scrolled {
-      padding: 0.4rem 6%;
-      min-height: 60px;
+      padding: 0.3rem 6%;
+      min-height: 64px;
     }
 
-    .nav-logo {
+    .nav-brand {
       text-decoration: none;
       display: flex;
       align-items: center;
+      gap: 0.85rem;
       flex-shrink: 0;
     }
 
-    .nav-logo img {
-      height: 65px;
+    .nav-brand img {
+      height: 83px;
       width: auto;
       object-fit: contain;
       display: block;
       transition: height .3s;
     }
 
-    nav.scrolled .nav-logo img {
-      height: 55px;
+    nav.scrolled .nav-brand img {
+      height: 68px;
+    }
+
+    .nav-brand-name {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav-brand-name .brand-main {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -.5px;
+      white-space: nowrap;
+    }
+
+    .nav-brand-name .brand-main span {
+      color: var(--accent);
+    }
+
+    .nav-brand-name .brand-sub {
+      font-size: .68rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, .45);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    nav.scrolled .nav-brand-name .brand-main {
+      font-size: 1.08rem;
     }
 
     .nav-links {
@@ -131,7 +164,7 @@
       transition: .3s;
     }
 
-    /* ── HERO ── */
+    /* HERO */
     #hero {
       min-height: 100vh;
       background: var(--navy);
@@ -207,7 +240,7 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 640px;
+      max-width: 660px;
     }
 
     .hero-badge {
@@ -221,19 +254,19 @@
       font-weight: 500;
       padding: .42rem 1rem;
       border-radius: 50px;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.4rem;
       letter-spacing: .6px;
       text-transform: uppercase;
-      animation: fadeUp .8s ease both;
+      animation: fadeUp .8s .1s ease both;
     }
 
     h1 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
       font-weight: 800;
       line-height: 1.06;
       color: var(--white);
-      animation: fadeUp .8s .15s ease both;
+      animation: fadeUp .8s .2s ease both;
     }
 
     h1 em {
@@ -260,7 +293,7 @@
       line-height: 1.8;
       color: rgba(255, 255, 255, .62);
       max-width: 480px;
-      animation: fadeUp .8s .3s ease both;
+      animation: fadeUp .8s .35s ease both;
     }
 
     .hero-actions {
@@ -268,7 +301,7 @@
       gap: 1rem;
       flex-wrap: wrap;
       margin-top: 2.2rem;
-      animation: fadeUp .8s .45s ease both;
+      animation: fadeUp .8s .5s ease both;
     }
 
     .btn-primary {
@@ -318,7 +351,7 @@
       margin-top: 3rem;
       padding-top: 2rem;
       border-top: 1px solid rgba(255, 255, 255, .1);
-      animation: fadeUp .8s .6s ease both;
+      animation: fadeUp .8s .65s ease both;
     }
 
     .stat-val {
@@ -345,7 +378,7 @@
       right: 5%;
       top: 50%;
       transform: translateY(-50%);
-      width: 36%;
+      width: 34%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -375,10 +408,19 @@
       background: radial-gradient(circle, rgba(0, 198, 255, .12), transparent 70%);
     }
 
-    .ac-icon-big {
-      font-size: 5rem;
+    .ac-card-logo {
+      height: 75px;
+      width: auto;
+      object-fit: contain;
       display: block;
-      margin-bottom: .8rem;
+      margin: 0 auto .6rem;
+      filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(0, 198, 255, .5));
+    }
+
+    .ac-icon-big {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: .5rem;
       animation: glow 3s ease-in-out infinite;
     }
 
@@ -443,7 +485,7 @@
       }
     }
 
-    /* ── SECTIONS ── */
+    /* SECTIONS */
     section {
       padding: 6rem 6%;
     }
@@ -479,7 +521,7 @@
       font-weight: 300;
     }
 
-    /* ── ABOUT ── */
+    /* ABOUT */
     #sobre {
       background: var(--ice);
       position: relative;
@@ -506,7 +548,6 @@
       z-index: 1;
     }
 
-    /* ── ABOUT IMAGE — foto real da loja ── */
     .about-img-main {
       width: 100%;
       border-radius: 20px;
@@ -514,7 +555,6 @@
       overflow: hidden;
       position: relative;
       box-shadow: 0 30px 80px rgba(6, 78, 128, .22);
-      /* remove background gradient e font-size do emoji */
       background: var(--navy);
       display: block;
       font-size: 0;
@@ -534,14 +574,11 @@
       transform: scale(1.03);
     }
 
-    /* Sutil overlay azul para harmonizar com a paleta */
     .about-img-main::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom,
-          transparent 55%,
-          rgba(4, 31, 56, .18) 100%);
+      background: linear-gradient(to bottom, transparent 55%, rgba(4, 31, 56, .18) 100%);
       border-radius: 20px;
       pointer-events: none;
     }
@@ -599,7 +636,7 @@
       flex-shrink: 0;
     }
 
-    /* ── SERVICES ── */
+    /* SERVICES */
     #servicos {
       background: var(--white);
     }
@@ -670,7 +707,7 @@
       line-height: 1.72;
     }
 
-    /* ── NUMBERS ── */
+    /* NUMBERS */
     #numeros {
       background: var(--navy);
       padding: 5rem 6%;
@@ -723,7 +760,7 @@
       letter-spacing: 1px;
     }
 
-    /* ── TESTIMONIALS ── */
+    /* TESTIMONIALS */
     #depoimentos {
       background: var(--ice);
     }
@@ -796,7 +833,7 @@
       color: var(--gray);
     }
 
-    /* ── TEAM ── */
+    /* TEAM */
     #equipe {
       background: var(--white);
     }
@@ -847,7 +884,7 @@
       color: var(--gray);
     }
 
-    /* ── VIDEO CAROUSEL ── */
+    /* VIDEO CAROUSEL */
     #videos {
       background: var(--navy);
       padding: 5rem 6%;
@@ -975,7 +1012,7 @@
       transform: scale(1.35);
     }
 
-    /* ── CONTACT ── */
+    /* CONTACT */
     #contato {
       background: var(--navy);
       position: relative;
@@ -1118,7 +1155,7 @@
       gap: 1rem;
     }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       background: #020f1c;
       padding: 2.8rem 6%;
@@ -1130,11 +1167,29 @@
       border-top: 1px solid rgba(126, 200, 227, .1);
     }
 
-    .footer-logo img {
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      text-decoration: none;
+    }
+
+    .footer-brand img {
       height: 44px;
       width: auto;
       object-fit: contain;
       filter: brightness(0) invert(1);
+    }
+
+    .footer-brand-name {
+      font-family: 'Syne', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .footer-brand-name span {
+      color: var(--accent);
     }
 
     .footer-copy {
@@ -1158,7 +1213,7 @@
       color: var(--accent);
     }
 
-    /* ── ANIMATIONS ── */
+    /* ANIMATIONS */
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -1192,7 +1247,7 @@
       transform: translateY(0);
     }
 
-    /* ── SCROLL TOP ── */
+    /* SCROLL TOP */
     .scroll-top {
       position: fixed;
       bottom: 2rem;
@@ -1224,7 +1279,7 @@
       transform: translateY(-3px);
     }
 
-    /* ── WHATSAPP ── */
+    /* WHATSAPP */
     .whatsapp-btn {
       position: fixed;
       bottom: 2rem;
@@ -1249,7 +1304,7 @@
       box-shadow: 0 10px 32px rgba(37, 211, 102, .5);
     }
 
-    /* ── MOBILE ── */
+    /* MOBILE */
     @media (max-width: 900px) {
       .nav-links {
         display: none;
@@ -1271,12 +1326,28 @@
         display: flex;
       }
 
+      .nav-brand-name .brand-main {
+        font-size: 1rem;
+      }
+
+      .nav-brand-name .brand-sub {
+        display: none;
+      }
+
       .hero-visual {
         display: none;
       }
 
       .hero-content {
         max-width: 100%;
+      }
+
+      .hero-brand-logo {
+        height: 60px;
+      }
+
+      .hero-brand-text .hb-name {
+        font-size: 1.6rem;
       }
 
       .about-grid,
@@ -1337,7 +1408,7 @@
 
   <!-- NAVBAR -->
   <nav id="navbar">
-    <a href="#hero" class="nav-logo">
+    <a href="#hero" class="nav-brand">
       <img src="ClimaColdArCondicionado.png" alt="Clima-Cold Ar-Condicionado" />
     </a>
     <ul class="nav-links" id="navLinks">
@@ -1358,6 +1429,7 @@
     <div class="particles" id="particles"></div>
     <div class="snow" id="snow"></div>
     <div class="hero-content">
+
       <div class="hero-badge">❄ Desde 2012 no Mercado</div>
       <h1>Conforto que<br /><em>refresca</em> sua vida</h1>
       <p class="hero-sub">A Clima-Cold é referência em ar-condicionado na região. Instalação, manutenção e suporte com
@@ -1383,8 +1455,9 @@
     </div>
     <div class="hero-visual">
       <div class="hero-ac-card">
+        <img src="ClimaColdArCondicionado.png" alt="Clima-Cold" class="ac-card-logo" />
         <span class="ac-icon-big">❄️</span>
-        <div class="ac-card-title">Ambiente Climatizado</div>
+        <div class="ac-card-title">Clima-Cold Ar-Condicionado</div>
         <div class="ac-card-temp">24<sub>°C</sub></div>
         <div class="ac-card-status"><span class="status-dot"></span>Sistema ativo — conforto total</div>
       </div>
@@ -1432,24 +1505,9 @@
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-icon">🛍️</div>
-        <h3>Vendas de Ar-condicionado</h3>
-        <p>As melhores marcas com consultoria especializada para você escolher o aparelho ideal. Garantia de conforto
-          térmico e economia para o seu bolso.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">🎮</div>
-        <h3>Controles de Ar-Condicionado</h3>
-        <p>Reposição de controles remotos para todas as marcas e modelos. Recupere o comando total do seu conforto com praticidade e garantia.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">🌬️</div>
-        <h3>Vendas de Climatizadores</h3>
-        <p>A solução ideal para manter ambientes frescos com baixo consumo. Equipamentos portáteis e eficientes para o seu bem-estar diário.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">🛡️</div>
-        <h3>Vendas de Cortinas de Ar</h3>
-        <p>Barreira térmica para o seu comércio. Mantém o ar climatizado no interior e bloqueia a entrada de calor, poeira e insetos.</p>
+        <h3>Vendas de Ar-condicionado, Climatizadores e Cortinas de Ar</h3>
+        <p>Oferecemos as melhores marcas de ar-condicionado, climatizadores e cortinas de ar, garantindo a escolha certa
+          para o seu conforto e economia.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-icon">🔧</div>
@@ -1459,8 +1517,9 @@
       </div>
       <div class="service-card reveal">
         <div class="service-icon">🛠️</div>
-        <h3>Concerto de Defeitos</h3>
-        <p>Diagnóstico e reparo rápido de falhas e defeitos.</p>
+        <h3>Diagnóstico de Defeitos</h3>
+        <p>Identificação precisa da origem das falhas para garantir um reparo definitivo e seguro em seus equipamentos.
+        </p>
       </div>
       <div class="service-card reveal">
         <div class="service-icon">✨</div>
@@ -1591,22 +1650,27 @@
       <div class="team-card reveal">
         <div class="team-avatar">👩‍🔧</div>
         <div class="team-name">Andreia</div>
-        <div class="team-role">Gerente da Oficina</div>
+        <div class="team-role">Almoxerifado</div>
       </div>
       <div class="team-card reveal">
-        <div class="team-avatar">👨‍🔧</div>
-        <div class="team-name">Flavio</div>
-        <div class="team-role">Técnico</div>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-avatar">👨‍🔧</div>
-        <div class="team-name">Felipe Candeia</div>
-        <div class="team-role">Técnico</div>
+        <div class="team-avatar">🔩</div>
+        <div class="team-name">Rogerio</div>
+        <div class="team-role">Eletrecista</div>
       </div>
       <div class="team-card reveal">
         <div class="team-avatar">🛠️</div>
         <div class="team-name">Everton Camarotto</div>
         <div class="team-role">Técnico</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">👨‍🔧</div>
+        <div class="team-name">Flavio</div>
+        <div class="team-role">Ajudante Técnico</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">👨‍🔧</div>
+        <div class="team-name">Felipe Candeia</div>
+        <div class="team-role">Ajudante Técnico</div>
       </div>
       <div class="team-card reveal">
         <div class="team-avatar">⚙️</div>
@@ -1619,13 +1683,8 @@
         <div class="team-role">Ajudante Técnico</div>
       </div>
       <div class="team-card reveal">
-        <div class="team-avatar">🔩</div>
-        <div class="team-name">Rogerio</div>
-        <div class="team-role">Ajudante Técnico</div>
-      </div>
-      <div class="team-card reveal">
         <div class="team-avatar">👷</div>
-        <div class="team-name">Tainã</div>
+        <div class="team-name">Cainã</div>
         <div class="team-role">Ajudante Técnico</div>
       </div>
     </div>
@@ -1646,6 +1705,7 @@
         <div class="carousel-slide active" data-index="0">
           <video controls preload="metadata">
             <source src="ClimaColdVideo.mp4" type="video/mp4">
+            <source src="" type="video/">
           </video>
           <div class="slide-label">Vídeo institucional — Clima-Cold Ar-Condicionado</div>
         </div>
@@ -1662,8 +1722,8 @@
       <div class="contact-info reveal">
         <span class="section-label">Fale Conosco</span>
         <h2 class="section-title">Solicite seu <span style="color:var(--accent)">orçamento</span></h2>
-        <p class="section-desc">Entre em contato e receba um orçamento gratuito. Atendemos residências, comércios e
-          indústrias em toda a região.</p>
+        <p class="section-desc">Entre em contato e receba um orçamento. Atendemos residências, comércios e indústrias em
+          toda a região.</p>
         <div class="contact-details">
           <div class="contact-item">
             <div class="contact-item-icon">📍</div>
@@ -1710,7 +1770,6 @@
             <option value="">Selecione um serviço</option>
             <option>Instalação de Ar-Condicionado</option>
             <option>Manutenção Preventiva</option>
-            <option>Manutenção Corretiva</option>
             <option>Projeto Comercial</option>
             <option>Higienização</option>
             <option>Contrato de Manutenção</option>
@@ -1726,9 +1785,10 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">
+    <a href="#hero" class="footer-brand">
       <img src="ClimaColdArCondicionado.png" alt="Clima-Cold Ar-Condicionado" />
-    </div>
+      <span class="footer-brand-name">Clima<span>-Cold</span></span>
+    </a>
     <p class="footer-copy">© 2026 Clima-Cold Ar-Condicionado · Todos os direitos reservados.</p>
     <div class="footer-links">
       <a href="#sobre">Sobre</a>
@@ -1748,7 +1808,6 @@
   </a>
 
   <script>
-    // Particles
     const pc = document.getElementById('particles');
     for (let i = 0; i < 16; i++) {
       const p = document.createElement('div');
@@ -1758,7 +1817,6 @@
       pc.appendChild(p);
     }
 
-    // Snow
     const sw = document.getElementById('snow');
     ['❄', '❅', '❆', '·', '✦'].forEach(f => {
       for (let i = 0; i < 5; i++) {
@@ -1770,7 +1828,6 @@
       }
     });
 
-    // Navbar scroll
     const nb = document.getElementById('navbar');
     const st = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
@@ -1778,7 +1835,6 @@
       st.classList.toggle('show', window.scrollY > 400);
     });
 
-    // Mobile menu
     function toggleMenu() {
       document.getElementById('navLinks').classList.toggle('open');
     }
@@ -1786,7 +1842,6 @@
       a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
     );
 
-    // Reveal on scroll
     const obs = new IntersectionObserver(entries => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
@@ -1797,7 +1852,6 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    // Counters
     function animCount(el, target, suffix) {
       let cur = 0;
       const step = target / 55;
@@ -1820,7 +1874,6 @@
     }, { threshold: 0.3 });
     numObs.observe(document.getElementById('numeros'));
 
-    // Carousel
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.dot');
@@ -1836,7 +1889,6 @@
     }
     function changeSlide(dir) { goToSlide(currentSlide + dir); }
 
-    // Form → WhatsApp
     function sendForm(btn) {
       const name = document.getElementById('f-name').value.trim();
       const phone = document.getElementById('f-phone').value.trim();
