@@ -38,7 +38,7 @@
       overflow-x: hidden
     }
 
-    /* NAV */
+    /* ── NAV ─────────────────────────────────────────────── */
     nav {
       position: fixed;
       top: 0;
@@ -47,74 +47,119 @@
       z-index: 500;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 60px;
-      height: 90px;
-      background: rgba(10, 15, 20, .95);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, .06);
-      transition: height .35s;
+      padding: 0 48px;
+      height: 110px;
+      background: rgba(10, 15, 20, .97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+      transition: height .4s ease;
+      gap: 0;
     }
 
     nav.scrolled {
-      height: 68px
+      height: 78px
     }
 
+    /* logo — esquerda, grande e impactante */
     .nav-logo {
       text-decoration: none;
       display: flex;
-      align-items: center
+      align-items: center;
+      flex-shrink: 0;
+      z-index: 2;
     }
 
     .nav-logo img {
-      height: 78px !important;
+      height: 110px;
       width: auto;
       object-fit: contain;
       display: block;
-      transition: height .35s
+      transition: height .4s ease, opacity .2s;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .3));
     }
 
     nav.scrolled .nav-logo img {
-      height: 58px
+      height: 68px
     }
 
+    .nav-logo:hover img {
+      opacity: .92;
+      transform: scale(1.02);
+    }
+
+    /* links — absolutamente centralizados */
     .nav-links {
-      display: flex !important;
+      display: flex;
       gap: 40px;
-      list-style: none
+      list-style: none;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
     }
 
     .nav-links a {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .72rem;
+      font-size: .7rem;
       font-weight: 500;
       letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, .6);
+      color: rgba(255, 255, 255, .5);
       text-decoration: none;
       transition: color .2s;
+      position: relative;
+      padding-bottom: 3px;
+      white-space: nowrap;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--cyan);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .25s;
     }
 
     .nav-links a:hover {
       color: var(--white)
     }
 
+    .nav-links a:hover::after {
+      transform: scaleX(1)
+    }
+
+    /* cta + ham — direita */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      gap: 16px;
+      z-index: 2;
+    }
+
     .nav-cta-btn {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .72rem;
+      font-size: .7rem;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--ink);
-      background: var(--white);
-      padding: .55rem 1.4rem;
+      background: var(--cyan);
+      padding: .65rem 1.6rem;
       text-decoration: none;
-      transition: background .2s, color .2s;
+      transition: background .2s, color .2s, transform .2s;
+      white-space: nowrap;
     }
 
     .nav-cta-btn:hover {
-      background: var(--cyan);
-      color: var(--white)
+      background: var(--white);
+      transform: translateY(-1px)
     }
 
     .ham {
@@ -122,7 +167,8 @@
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
-      padding: 6px
+      padding: 8px;
+      border: 1px solid rgba(255, 255, 255, .12);
     }
 
     .ham span {
@@ -130,10 +176,23 @@
       height: 1.5px;
       background: white;
       display: block;
-      transition: .3s
+      transition: transform .3s, opacity .3s;
     }
 
-    /* HERO */
+    .ham.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg)
+    }
+
+    .ham.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0)
+    }
+
+    .ham.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg)
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
     #hero {
       min-height: 100vh;
       background: var(--ink);
@@ -144,7 +203,7 @@
     }
 
     .hero-left {
-      padding: 160px 60px 80px;
+      padding: 140px 60px 80px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -162,7 +221,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       opacity: 0;
       animation: slideR .9s .2s forwards;
     }
@@ -171,23 +230,36 @@
       content: '';
       width: 32px;
       height: 1px;
-      background: var(--cyan)
+      background: var(--cyan);
     }
 
-    .hero-h1 {
+    /* hero: nome da marca em tipografia, sem a imagem do logo */
+    .hero-brand-name {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3.2rem, 5.5vw, 5.5rem);
+      font-size: clamp(3rem, 5.2vw, 5.2rem);
       font-weight: 900;
       line-height: 1.0;
       color: var(--white);
       opacity: 0;
-      animation: slideR .9s .35s forwards;
+      animation: slideR .9s .32s forwards;
     }
 
-    .hero-h1 em {
+    .hero-brand-name em {
       font-style: italic;
       color: transparent;
-      -webkit-text-stroke: 1px var(--cyan)
+      -webkit-text-stroke: 1px var(--cyan);
+    }
+
+    .hero-tagline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .3);
+      margin-top: 10px;
+      opacity: 0;
+      animation: slideR .9s .42s forwards;
     }
 
     .hero-body {
@@ -272,7 +344,7 @@
       font-size: 2.4rem;
       font-weight: 700;
       color: var(--white);
-      line-height: 1
+      line-height: 1;
     }
 
     .stat-n sup {
@@ -291,7 +363,6 @@
       letter-spacing: .5px
     }
 
-    /* hero right panel — badge fica DENTRO dele e só aparece em desktop */
     .hero-right {
       position: relative;
       overflow: visible
@@ -304,7 +375,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden
+      overflow: hidden;
     }
 
     .hero-right-img img {
@@ -312,13 +383,13 @@
       height: 100%;
       object-fit: cover;
       opacity: .35;
-      mix-blend-mode: luminosity
+      mix-blend-mode: luminosity;
     }
 
     .hero-right-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, var(--ink), transparent 40%)
+      background: linear-gradient(90deg, var(--ink), transparent 40%);
     }
 
     .hero-badge-float {
@@ -357,7 +428,7 @@
       background: rgba(255, 255, 255, .05)
     }
 
-    /* SECTION BASE */
+    /* ── SECTION BASE ────────────────────────────────────── */
     .section-eyebrow {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: .65rem;
@@ -391,7 +462,7 @@
       font-size: clamp(2rem, 4vw, 3.4rem);
       font-weight: 900;
       line-height: 1.12;
-      color: var(--ink)
+      color: var(--ink);
     }
 
     .section-h em {
@@ -407,7 +478,7 @@
       color: var(--cyan)
     }
 
-    /* ABOUT */
+    /* ── ABOUT ───────────────────────────────────────────── */
     #sobre {
       background: var(--off);
       padding: 120px 60px
@@ -419,10 +490,9 @@
       gap: 80px;
       align-items: center;
       max-width: 1200px;
-      margin: 0 auto
+      margin: 0 auto;
     }
 
-    /* O wrap tem overflow:visible e padding para o badge aparecer fora do frame */
     .about-img-wrap {
       position: relative;
       padding-bottom: 56px;
@@ -433,7 +503,7 @@
       position: relative;
       aspect-ratio: 3/4;
       overflow: hidden;
-      background: var(--ink2)
+      background: var(--ink2);
     }
 
     .about-img-frame img {
@@ -442,7 +512,7 @@
       object-fit: cover;
       object-position: center 30%;
       filter: grayscale(15%);
-      transition: transform .8s, filter .5s
+      transition: transform .8s, filter .5s;
     }
 
     .about-img-frame:hover img {
@@ -459,10 +529,9 @@
       height: 40%;
       background: linear-gradient(to top, rgba(10, 15, 20, .5), transparent);
       z-index: 1;
-      pointer-events: none
+      pointer-events: none;
     }
 
-    /* badge posicionado relativo ao WRAP (que tem overflow:visible), nao ao frame */
     .about-year-tag {
       position: absolute;
       bottom: 0;
@@ -555,10 +624,10 @@
       background: rgba(0, 180, 216, .08);
       padding: .2rem .55rem;
       margin-top: .1rem;
-      flex-shrink: 0
+      flex-shrink: 0;
     }
 
-    /* SERVICES */
+    /* ── SERVICES ────────────────────────────────────────── */
     #servicos {
       background: var(--white);
       padding: 120px 60px
@@ -571,7 +640,7 @@
       gap: 40px;
       max-width: 1200px;
       margin: 0 auto 60px;
-      flex-wrap: wrap
+      flex-wrap: wrap;
     }
 
     .services-grid-new {
@@ -580,7 +649,7 @@
       gap: 1px;
       background: var(--off);
       max-width: 1200px;
-      margin: 0 auto
+      margin: 0 auto;
     }
 
     .svc {
@@ -589,7 +658,7 @@
       position: relative;
       overflow: hidden;
       transition: background .35s;
-      cursor: default
+      cursor: default;
     }
 
     .svc::after {
@@ -602,7 +671,7 @@
       background: var(--cyan);
       transform: scaleY(0);
       transform-origin: bottom;
-      transition: transform .35s
+      transition: transform .35s;
     }
 
     .svc:hover {
@@ -666,7 +735,7 @@
       transition: color .35s
     }
 
-    /* NUMBERS */
+    /* ── NUMBERS ─────────────────────────────────────────── */
     #numeros {
       background: var(--ink);
       padding: 100px 60px;
@@ -686,7 +755,7 @@
       color: rgba(255, 255, 255, .02);
       line-height: 1;
       pointer-events: none;
-      letter-spacing: -10px
+      letter-spacing: -10px;
     }
 
     .num-grid {
@@ -695,7 +764,7 @@
       gap: 0;
       border: 1px solid rgba(255, 255, 255, .06);
       max-width: 1100px;
-      margin: 0 auto
+      margin: 0 auto;
     }
 
     .num-cell {
@@ -736,7 +805,7 @@
       margin-top: 10px
     }
 
-    /* TEAM */
+    /* ── TEAM ────────────────────────────────────────────── */
     #equipe {
       background: var(--off);
       padding: 120px 60px
@@ -783,7 +852,7 @@
       background: linear-gradient(90deg, var(--cyan), var(--blue));
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform .35s
+      transition: transform .35s;
     }
 
     .tmember:hover::before {
@@ -818,7 +887,7 @@
       margin-top: 4px
     }
 
-    /* VIDEOS */
+    /* ── VIDEOS ──────────────────────────────────────────── */
     #videos {
       background: var(--ink2);
       padding: 120px 60px
@@ -857,10 +926,10 @@
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, .45)
+      color: rgba(255, 255, 255, .45);
     }
 
-    /* CONTACT */
+    /* ── CONTACT ─────────────────────────────────────────── */
     #contato {
       background: var(--ink);
       padding: 120px 60px
@@ -873,14 +942,6 @@
       max-width: 1200px;
       margin: 0 auto;
       align-items: start
-    }
-
-    .contact-info-side .section-h {
-      color: var(--white)
-    }
-
-    .contact-info-side .section-h em {
-      color: var(--cyan)
     }
 
     .contact-detail-list {
@@ -996,7 +1057,7 @@
       color: var(--white);
       padding: 8px 0 14px;
       background: transparent;
-      resize: none;
+      resize: none
     }
 
     .fg input::placeholder,
@@ -1028,7 +1089,7 @@
       padding: 1.1rem 2rem;
       border: none;
       cursor: pointer;
-      transition: background .25s, transform .2s
+      transition: background .25s, transform .2s;
     }
 
     .form-submit:hover {
@@ -1036,7 +1097,7 @@
       transform: translateY(-2px)
     }
 
-    /* FOOTER */
+    /* ── FOOTER ──────────────────────────────────────────── */
     footer {
       background: #020c14;
       padding: 36px 60px;
@@ -1045,7 +1106,7 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 20px;
-      border-top: 1px solid rgba(255, 255, 255, .05)
+      border-top: 1px solid rgba(255, 255, 255, .05);
     }
 
     .footer-brand {
@@ -1074,27 +1135,7 @@
       text-transform: uppercase
     }
 
-    .footer-nav {
-      display: flex;
-      gap: 28px
-    }
-
-    .footer-nav a {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .65rem;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .3);
-      text-decoration: none;
-      transition: color .2s
-    }
-
-    .footer-nav a:hover {
-      color: var(--cyan)
-    }
-
-    /* FIXED BUTTONS */
+    /* ── FIXED BUTTONS ───────────────────────────────────── */
     .scroll-top-btn {
       position: fixed;
       bottom: 36px;
@@ -1111,7 +1152,7 @@
       text-decoration: none;
       opacity: 0;
       pointer-events: none;
-      transition: opacity .3s, background .2s
+      transition: opacity .3s, background .2s;
     }
 
     .scroll-top-btn.show {
@@ -1140,7 +1181,7 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       text-decoration: none;
-      transition: background .2s, transform .2s
+      transition: background .2s, transform .2s;
     }
 
     .wa-btn:hover {
@@ -1148,7 +1189,7 @@
       transform: translateY(-2px)
     }
 
-    /* ANIMATIONS */
+    /* ── ANIMATIONS ──────────────────────────────────────── */
     @keyframes slideR {
       from {
         opacity: 0;
@@ -1172,42 +1213,74 @@
       transform: translateY(0)
     }
 
-    /* MOBILE */
+    /* ── MOBILE ──────────────────────────────────────────── */
     @media(max-width:900px) {
       nav {
         padding: 0 20px;
-        height: 72px
+        height: 90px;
+      }
+
+      nav.scrolled {
+        height: 68px
       }
 
       .nav-logo img {
-        height: 56px
+        height: 82px
       }
 
-      .nav-links,
-      .nav-cta-btn {
-        display: none
+      nav.scrolled .nav-logo img {
+        height: 58px
       }
 
-      .nav-links.open {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
+      /* links: dropdown mobile bonito */
+      .nav-links {
+        display: none;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(10, 15, 20, .98);
-        padding: 16px 20px 24px
+        background: rgba(8, 13, 18, .99);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 0 16px;
+        border-bottom: 1px solid rgba(0, 180, 216, .15);
+        transform: none;
       }
 
-      .nav-links.open li {
-        border-bottom: 1px solid rgba(255, 255, 255, .06)
+      .nav-links.open {
+        display: flex
       }
 
-      .nav-links.open a {
-        display: block;
-        padding: 14px 0;
-        font-size: .9rem
+      .nav-links li {
+        border-bottom: 1px solid rgba(255, 255, 255, .05);
+      }
+
+      .nav-links a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 16px 24px;
+        font-size: .85rem;
+        letter-spacing: 2px;
+        color: rgba(255, 255, 255, .6);
+      }
+
+      .nav-links a::after {
+        display: none
+      }
+
+      .nav-links a:hover {
+        color: var(--cyan);
+        background: rgba(0, 180, 216, .05);
+      }
+
+      .nav-right {
+        gap: 12px
+      }
+
+      .nav-cta-btn {
+        display: none
       }
 
       .ham {
@@ -1220,10 +1293,9 @@
       }
 
       .hero-left {
-        padding: 110px 20px 60px
+        padding: 100px 20px 60px
       }
 
-      /* no mobile o painel direito some mas o badge ficaria invisivel — movemos pro left */
       .hero-right {
         display: none
       }
@@ -1237,12 +1309,12 @@
         font-size: 1.8rem
       }
 
-      .hero-h1 {
+      .hero-brand-name {
         font-size: clamp(2.4rem, 9vw, 3.2rem)
       }
 
       #sobre {
-        padding: 80px 20px 80px
+        padding: 80px 20px
       }
 
       #servicos,
@@ -1261,7 +1333,6 @@
         gap: 40px
       }
 
-      /* no mobile: badge fica como bloco abaixo da imagem sem overflow */
       .about-img-wrap {
         padding-bottom: 0;
         padding-right: 0
@@ -1348,10 +1419,6 @@
         gap: 16px
       }
 
-      .footer-nav {
-        justify-content: center
-      }
-
       .wa-btn span {
         display: none
       }
@@ -1388,9 +1455,12 @@
 
   <!-- NAV -->
   <nav id="navbar">
+    <!-- Logo — esquerda, grande -->
     <a href="#hero" class="nav-logo">
-    <img src="/ClimaColdArCondicionado.png" alt="Clima-Cold Ar-Condicionado"/>
-  </a>
+      <img src="LOGOCC.png" alt="Clima-Cold Ar-Condicionado" />
+    </a>
+
+    <!-- Links — centro absoluto -->
     <ul class="nav-links" id="navLinks">
       <li><a href="#hero">Início</a></li>
       <li><a href="#sobre">Sobre</a></li>
@@ -1398,9 +1468,13 @@
       <li><a href="#equipe">Equipe</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
-    <a href="#contato" class="nav-cta-btn">Orçamento</a>
-    <div class="ham" id="ham" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
+
+    <!-- CTA + hambúrguer — direita -->
+    <div class="nav-right">
+      <a href="#contato" class="nav-cta-btn">Orçamento</a>
+      <div class="ham" id="ham" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </nav>
 
@@ -1408,9 +1482,12 @@
   <section id="hero">
     <div class="hero-left">
       <div class="hero-eyebrow">Fernandópolis — SP</div>
-      <h1 class="hero-h1">Climatização<br />de alto<br /><em>padrão.</em></h1>
-      <p class="hero-body">Instalação, manutenção e projetos de climatização para residências, comércios e indústrias.
-        Excelência técnica desde 2012.</p>
+
+      <!-- Headline profissional -->
+      <div class="hero-brand-name">Climatização<br />com <em>excelência</em><br />e garantia<br />total.</div>
+
+      <p class="hero-body">Venda, instalação e manutenção de ar-condicionado para residências, comércios e indústrias.
+        Mais de 12 anos atendendo Fernandópolis e toda a região noroeste paulista.</p>
       <div class="hero-actions">
         <a href="#contato" class="btn-fill">Solicitar Orçamento</a>
         <a href="#servicos" class="btn-line">Ver serviços</a>
@@ -1430,6 +1507,7 @@
         </div>
       </div>
     </div>
+
     <div class="hero-right">
       <div class="hero-right-img">
         <img src="ClimaColdLoja.webp" alt="Clima-Cold Loja" />
@@ -1440,6 +1518,7 @@
         <div class="hbf-t">Fundação</div>
       </div>
     </div>
+
     <div class="hero-line" style="left:25%"></div>
     <div class="hero-line" style="left:50%"></div>
     <div class="hero-line" style="left:75%"></div>
@@ -1452,7 +1531,6 @@
         <div class="about-img-frame">
           <img src="ClimaColdLoja.webp" alt="Loja Clima-Cold" />
         </div>
-        <!-- badge fora do frame (que tem overflow:hidden), dentro do wrap (overflow:visible) -->
         <div class="about-year-tag">
           <div class="ayt-n">12+</div>
           <div class="ayt-t">Anos no mercado</div>
@@ -1647,7 +1725,7 @@
     <div class="contact-wrap">
       <div class="contact-info-side reveal">
         <div class="section-eyebrow light">Fale Conosco</div>
-        <h2 class="section-h">Solicite seu<br /><em>orçamento.</em></h2>
+        <h2 class="section-h light">Solicite seu<br /><em>orçamento.</em></h2>
         <div class="contact-detail-list">
           <div class="cdi">
             <div class="cdi-icon">📍</div>
@@ -1661,7 +1739,10 @@
           <div class="cdi">
             <div class="cdi-icon">✉️</div>
             <div><span class="cdi-label">E-mail</span><span class="cdi-val"><a
-                  href="mailto:climacold.arcond@gmail.com">climacold.arcond@gmail.com</a></span></div>
+                  href="/cdn-cgi/l/email-protection#51323d383c30323e3d357f3023323e3f3511363c30383d7f323e3c"><span
+                    class="__cf_email__"
+                    data-cfemail="7417181d1915171b18105a1506171b1a10341319151d185a171b19">[email&#160;protected]</span></a></span>
+            </div>
           </div>
           <div class="cdi">
             <div class="cdi-icon">⏰</div>
@@ -1703,12 +1784,6 @@
       <img src="ClimaColdArCondicionado.png" alt="Clima-Cold Ar-Condicionado" />
     </a>
     <p class="footer-copy">© 2026 Clima-Cold Ar-Condicionado · Todos os direitos reservados.</p>
-    <nav class="footer-nav">
-      <a href="#sobre">Sobre</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#equipe">Equipe</a>
-      <a href="#contato">Contato</a>
-    </nav>
   </footer>
 
   <a href="#hero" class="scroll-top-btn" id="scrollTop">↑</a>
@@ -1721,6 +1796,7 @@
     <span>WhatsApp</span>
   </a>
 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     const nb = document.getElementById('navbar'), st = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
@@ -1728,8 +1804,13 @@
       st.classList.toggle('show', scrollY > 400);
     });
 
-    function toggleMenu() { document.getElementById('navLinks').classList.toggle('open') }
-    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('ham').classList.toggle('open');
+    }
+    document.querySelectorAll('.nav-links a').forEach(a =>
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+    );
 
     const obs = new IntersectionObserver(entries => {
       entries.forEach((e, i) => {
@@ -1747,6 +1828,7 @@
         el.innerHTML = d + '<span>' + suffix + '</span>';
       }, 20);
     }
+
     const nObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -1765,11 +1847,15 @@
       const msg = document.getElementById('f-msg').value.trim();
       if (!name) { alert('Por favor, preencha seu nome.'); return }
       if (!phone) { alert('Por favor, preencha seu telefone.'); return }
-      if (!service) { alert('Por favor, selecione um servico.'); return }
-      const texto = 'Ola, vim pelo site da Clima-Cold!\n\n*Nome:* ' + name + '\n*Telefone:* ' + phone + '\n' + (email ? '*E-mail:* ' + email + '\n' : '') + '*Servico:* ' + service + (msg ? '\n*Mensagem:* ' + msg : '');
+      if (!service) { alert('Por favor, selecione um serviço.'); return }
+      const texto = 'Olá, vim pelo site da Clima-Cold!\n\n*Nome:* ' + name +
+        '\n*Telefone:* ' + phone +
+        (email ? '\n*E-mail:* ' + email : '') +
+        '\n*Serviço:* ' + service +
+        (msg ? '\n*Mensagem:* ' + msg : '');
       window.open('https://wa.me/5517996286060?text=' + encodeURIComponent(texto), '_blank');
       btn.textContent = 'Abrindo WhatsApp...'; btn.disabled = true;
-      setTimeout(() => { btn.textContent = 'Enviar pelo WhatsApp'; btn.disabled = false }, 3500);
+      setTimeout(() => { btn.textContent = 'Enviar pelo WhatsApp ✉️'; btn.disabled = false }, 3500);
     }
   </script>
 </body>
