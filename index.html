@@ -57,7 +57,7 @@
     }
 
     nav.scrolled {
-      height: 78px
+      height: 80px
     }
 
     /* logo — esquerda, grande e impactante */
@@ -79,7 +79,7 @@
     }
 
     nav.scrolled .nav-logo img {
-      height: 68px
+      height: 90px
     }
 
     .nav-logo:hover img {
@@ -1130,6 +1130,7 @@
     .footer-copy {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: .65rem;
+      align-items: center;
       letter-spacing: 1.5px;
       color: rgba(255, 255, 255, .25);
       text-transform: uppercase
@@ -1221,7 +1222,7 @@
       }
 
       nav.scrolled {
-        height: 68px
+        height: 70px
       }
 
       .nav-logo img {
@@ -1229,7 +1230,7 @@
       }
 
       nav.scrolled .nav-logo img {
-        height: 58px
+        height: 70px
       }
 
       /* links: dropdown mobile bonito */
@@ -1607,12 +1608,12 @@
     <div class="num-grid">
       <div class="num-cell reveal">
         <div class="num-cell-icon">🏆</div>
-        <div class="num-big" data-target="12" data-suffix="+">12<span>+</span></div>
+        <div class="num-big" data-target="14" data-suffix="+">14<span>+</span></div>
         <div class="num-lbl">Anos no Mercado</div>
       </div>
       <div class="num-cell reveal">
         <div class="num-cell-icon">😊</div>
-        <div class="num-big" data-target="8000" data-suffix="+">7k<span>+</span></div>
+        <div class="num-big" data-target="8000" data-suffix="+">8k<span>+</span></div>
         <div class="num-lbl">Clientes Satisfeitos</div>
       </div>
       <div class="num-cell reveal">
@@ -1738,10 +1739,9 @@
           </div>
           <div class="cdi">
             <div class="cdi-icon">✉️</div>
-            <div><span class="cdi-label">E-mail</span><span class="cdi-val"><a
-                  href="/cdn-cgi/l/email-protection#51323d383c30323e3d357f3023323e3f3511363c30383d7f323e3c"><span
-                    class="__cf_email__"
-                    data-cfemail="7417181d1915171b18105a1506171b1a10341319151d185a171b19">[email&#160;protected]</span></a></span>
+            <div><span class="cdi-label">E-mail</span><span class="cdi-val">
+                  <a href="mailto:climacoldarcondi@gmail.com">climacoldarcondi@gmail.com</a>
+                </span></span>
             </div>
           </div>
           <div class="cdi">
@@ -1758,7 +1758,8 @@
             <div class="fg"><label>Nome</label><input type="text" placeholder="Seu nome completo" id="f-name" /></div>
             <div class="fg"><label>Telefone</label><input type="tel" placeholder="(17) 99628-6060" id="f-phone" /></div>
           </div>
-          <div class="fg"><label>E-mail</label><input type="email" placeholder="seu@email.com" id="f-email" /></div>
+          <div class="fg"><label>E-mail</label><input type="email" placeholder="seuemail@email.com" id="f-email" />
+          </div>
           <div class="fg">
             <label>Serviço de interesse</label>
             <select id="f-service">
@@ -1796,8 +1797,6 @@
     </svg>
     <span>WhatsApp</span>
   </a>
-
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     const nb = document.getElementById('navbar'), st = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
